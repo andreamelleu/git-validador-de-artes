@@ -1,4 +1,4 @@
-aplicatimport streamlit as st
+import streamlit as st
 import datetime
 import os
 from regras import carregar_regras
@@ -72,26 +72,45 @@ def main():
         unsafe_allow_html=True
     )
     st.divider()
+# ... todo o seu código da sidebar e do cabeçalho ...
 
-    # ===== ÁREA DE VISUALIZAÇÃO =====
-    col_gabarito, col_arte = st.columns(2)
+# ===== ÁREA DE VISUALIZAÇÃO (seu código atual) =====
+col_gabarito, col_arte = st.columns(2)
 
-    with col_gabarito:
-        st.subheader(f"Gabarito: {regra['descricao']}")
-        caminho = regra["gabarito_img"]
-        if not os.path.exists(caminho):
-            caminho = os.path.join("assets", "teatros", "grandes_atores", caminho)
-        if os.path.exists(caminho):
-            st.image(caminho, use_container_width=True)
+with col_gabarito:
+    st.subheader(f"Gabarito: {regra['descricao']}")
+    # ... seu código para mostrar a imagem do gabarito ...
+
+with col_arte:
+    st.subheader("Sua Arte")
+    if arquivo:
+        st.image(arquivo, use_container_width=True)
+    else:
+        st.info("Aguardando upload...")
+
+st.divider()
+
+# ===== ÁREA DE RESULTADOS (aqui está a correção) =====
+
+# 1. Crie um placeholder dedicado para os resultados da validação
+placeholder_resultados = st.empty()
+
+# 2. Verifique se o botão foi clicado E se existe um arquivo
+# (Note que o st.button retorna True quando é clicado)
+if validar_button and arquivo:
+    
+    # 3. Chame sua função de validação
+    # Supondo que ela retorne (True/False, "Mensagem")
+    aprovado, mensagem = verificar_arte(arquivo, regra) 
+
+    # 4. Use o placeholder para mostrar o resultado
+    with placeholder_resultados.container():
+        if aprovado:
+            st.success(f"✅ ARTE APROVADA! {mensagem}")
         else:
-            st.warning("Imagem de gabarito não encontrada.")
+            st.error(f"❌ ARTE REPROVADA! {mensagem}")
 
-    with col_arte:
-        st.subheader("Sua Arte")
-        if arquivo:
-            st.image(arquivo, use_container_width=True)
-        else:
-            st.info("Aguardando upload...")
-
-if __name__ == "__main__":
-    main()
+# Opcional: Mostre uma mensagem inicial no placeholder se não houver arquivo
+elif not arquivo:
+    with placeholder_resultados.container():
+        st.info("Aguardando o upload de uma arte para iniciar a validação.")
