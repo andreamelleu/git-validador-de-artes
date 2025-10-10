@@ -42,3 +42,4 @@ def carregar_regras(teatro):
                 "orientacao": "vertical"
             },
         }
+    return {}

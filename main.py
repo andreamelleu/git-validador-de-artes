@@ -1,5 +1,4 @@
 import streamlit as st
-from pil_lite import Image
 import datetime
 import os
 from regras import carregar_regras
@@ -90,12 +89,9 @@ def main():
     with col_arte:
         st.subheader("Sua Arte")
         if arquivo:
-            st.image(Image.open(arquivo), use_container_width=True)
+            st.image(arquivo, use_container_width=True)
         else:
             st.info("Aguardando upload...")
 
 if __name__ == "__main__":
-    import streamlit.web.cli as stcli
-    import sys
-    sys.argv = ["streamlit", "run", "main.py"]
-    sys.exit(stcli.main())
+    main()

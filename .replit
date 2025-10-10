@@ -2,12 +2,41 @@ run = "streamlit run main.py --server.port=3000 --server.address=0.0.0.0"
 modules = ["python-3.11"]
 
 [nix]
-packages = ["libGL", "libGLU", "streamlit"]
+packages = ["freetype", "lcms2", "libGL", "libGLU", "libimagequant", "libjpeg", "libtiff", "libwebp", "libxcrypt", "openjpeg", "streamlit", "tcl", "tk", "zlib"]
+channel = "stable-25_05"
 
 [[ports]]
 localPort = 3000
 externalPort = 80
 
 [[ports]]
+localPort = 5000
+externalPort = 5000
+
+[[ports]]
 localPort = 8501
 externalPort = 3000
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Streamlit App"
+
+[[workflows.workflow]]
+name = "Streamlit App"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "streamlit run main.py --server.port 5000 --server.address 0.0.0.0"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
