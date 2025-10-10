@@ -26,7 +26,7 @@ def main():
     )
 
     # logo limpa e nítida
-    st.sidebar.image("logo_mywork.png", use_container_width=False)
+    st.sidebar.image("logo_mywork.png")
 
     st.sidebar.title("Painel de Validação")
 
