@@ -1,4 +1,21 @@
 import streamlit as st
+
+try:
+    from regras import verificar_arte
+    from PIL import Image
+    import pandas as pd
+    import io
+    import os
+    import base64
+    import datetime
+    import zipfile
+    import shutil
+    from utils import processar_arquivo, salvar_log
+except Exception as e:
+    st.error(f"Erro de importação: {e}")
+    raise
+
+import streamlit as st
 import datetime
 import os
 from regras import carregar_regras
