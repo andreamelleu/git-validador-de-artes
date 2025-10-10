@@ -1,7 +1,6 @@
 streamlit
-pillow
-pandas
-numpy
-altair
-
-
+Pillow
+PyPDF2
+requests
+python-dotenv
+openai==0.28
