@@ -114,4 +114,10 @@ def main():
         st.code(traceback.format_exc())
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as e:
+        st.error(f"Erro ao iniciar o app: {str(e)}")
+        import traceback
+        st.text("Traceback:")
+        st.code(traceback.format_exc())
