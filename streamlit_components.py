@@ -1,47 +1,50 @@
 """
 Componentes reutilizáveis para Streamlit
-Centraliza componentes de UI que são usados em múltiplos lugares
+Centraliza componentes de UI usados em múltiplos lugares.
 """
 
 import streamlit as st
 from common_utils import formatar_data_brasileira
 
 
+# === Estilo global ===
 def aplicar_estilo_global():
-    """Aplica tema light/dark automaticamente + rodapé customizado"""
+    """Aplica CSS customizado para o layout e rodapé."""
     st.markdown(
         """
         <style>
-        /* Tema claro (light) */
+        /* Tema claro */
         @media (prefers-color-scheme: light) {
             .stApp { background-color: #f2f2f2 !important; color: #000 !important; }
-            h1, h2, h3, .stSubheader, label, p, span, div { color: #000 !important; }
+            [data-testid="stSidebar"] { background-color: #f5f5f5 !important; }
+            h1, h2, h3, label, p, span, div { color: #000 !important; }
             .stButton > button {
                 background-color: #e0e0e0 !important;
                 color: #000 !important;
                 border-radius: 6px;
+                border: 1px solid #ccc;
             }
-            [data-testid="stSidebar"] { background-color: #f5f5f5 !important; }
         }
 
-        /* Tema escuro (dark) */
+        /* Tema escuro */
         @media (prefers-color-scheme: dark) {
             .stApp { background-color: #1e1e1e !important; color: #fff !important; }
-            h1, h2, h3, .stSubheader, label, p, span, div { color: #fff !important; }
+            [data-testid="stSidebar"] { background-color: #2c2c34 !important; }
+            h1, h2, h3, label, p, span, div { color: #fff !important; }
             .stButton > button {
                 background-color: #333 !important;
                 color: #fff !important;
                 border-radius: 6px;
+                border: 1px solid #555;
             }
-            [data-testid="stSidebar"] { background-color: #2c2c34 !important; }
         }
 
-        /* Tamanho de fontes */
-        h1 { font-size: 26px !important; }
+        /* Fontes */
+        h1 { font-size: 26px !important; font-weight: 700; }
         h2 { font-size: 20px !important; }
         h3, label, p, span, div, .stMarkdown { font-size: 14px !important; }
 
-        /* Rodapé customizado */
+        /* Rodapé */
         #MainMenu {visibility: hidden;}
         footer > div:first-child {visibility: hidden;}
         footer:after {
@@ -60,30 +63,37 @@ def aplicar_estilo_global():
     )
 
 
+# === Logo ===
 def _logo_por_tema():
-    """Exibe logo conforme tema do usuário"""
-    st.markdown(
-        """
-        <style>
-        @media (prefers-color-scheme: light) {
-            .logo-light { display: block; }
-            .logo-dark { display: none; }
-        }
-        @media (prefers-color-scheme: dark) {
-            .logo-light { display: none; }
-            .logo-dark { display: block; }
-        }
-        </style>
+    """Mostra a logo conforme o tema claro/escuro."""
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.markdown(
+            """
+            <style>
+            .logo-light, .logo-dark {
+                display: none;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            @media (prefers-color-scheme: light) {
+                .logo-light { display: block; }
+            }
+            @media (prefers-color-scheme: dark) {
+                .logo-dark { display: block; }
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+        )
 
-        <img src="logo_mywork_black.png" class="logo-light" width="220">
-        <img src="logo_mywork_white.png" class="logo-dark" width="220">
-        """,
-        unsafe_allow_html=True
-    )
+        st.image("assets/comuns/logo_mywork_black.png", width=220)
+        st.image("assets/comuns/logo_mywork_white.png", width=220)
 
 
+# === Cabeçalho ===
 def renderizar_cabecalho():
-    """Renderiza o cabeçalho principal da aplicação"""
+    """Renderiza cabeçalho principal da aplicação."""
     aplicar_estilo_global()
     _logo_por_tema()
     st.markdown("<h1>GIT Validador de Artes</h1>", unsafe_allow_html=True)
@@ -95,11 +105,11 @@ def renderizar_cabecalho():
     st.divider()
 
 
+# === Sidebar ===
 def renderizar_sidebar_painel(teatro_inicial, regras, arquivo):
-    """Renderiza o painel lateral com controles"""
+    """Renderiza o painel lateral de validação."""
     from regras import carregar_regras
 
-    _logo_por_tema()
     st.sidebar.title("Painel de Validação")
 
     teatro = st.sidebar.selectbox(
@@ -115,7 +125,7 @@ def renderizar_sidebar_painel(teatro_inicial, regras, arquivo):
         chave_gabarito = list(regras_teatro.keys())[gabarito_opcoes.index(escolha_gabarito)]
         regra = regras_teatro[chave_gabarito]
     else:
-        st.sidebar.error("Nenhuma regra encontrada para este teatro")
+        st.sidebar.error("Nenhuma regra encontrada para este teatro.")
         regra = {}
 
     st.sidebar.markdown("#### Suba a sua Arte:")
@@ -130,8 +140,9 @@ def renderizar_sidebar_painel(teatro_inicial, regras, arquivo):
     return teatro, regra, arquivo, validar_button
 
 
+# === Visualização ===
 def renderizar_area_visualizacao(regra, arquivo, teatro):
-    """Renderiza a área de visualização com gabarito e arte"""
+    """Renderiza área de visualização de gabarito e arte."""
     from common_utils import verificar_existencia_imagem
     import os
 
@@ -157,8 +168,9 @@ def renderizar_area_visualizacao(regra, arquivo, teatro):
     st.divider()
 
 
+# === Resultado ===
 def renderizar_resultados(validar_button, arquivo, regra):
-    """Renderiza a área de resultados da validação"""
+    """Renderiza resultados da validação."""
     placeholder_resultados = st.empty()
 
     if validar_button and arquivo:
