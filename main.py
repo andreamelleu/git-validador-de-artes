@@ -5,7 +5,7 @@ from datetime import datetime
 st.set_page_config(
     page_title="GIT Validador de Artes",
     layout="wide",
-    page_icon="🎨"
+    page_icon="generated-icon-black.svg"
 )
 
 # === ESTILO PERSONALIZADO (modo claro) ===
