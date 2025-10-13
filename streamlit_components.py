@@ -98,7 +98,10 @@ def renderizar_area_visualizacao(regra, arquivo, teatro):
     col_gabarito, col_arte = st.columns(2)
 
     with col_gabarito:
-        st.subheader(f"Gabarito: {regra['descricao']}")
+        st.markdown(
+            f"<h4 style='margin: 0; font-size:18px;'>Gabarito: {regra['descricao']}</h4>",
+            unsafe_allow_html=True
+        )
 
         # Determina diretório base (mantendo a estrutura existente)
         diretorio_teatro = (
@@ -115,7 +118,7 @@ def renderizar_area_visualizacao(regra, arquivo, teatro):
             st.warning(f"⚠️ Gabarito não encontrado: {caminho_gabarito}")
 
     with col_arte:
-        st.subheader("Sua Arte")
+        st.markdown("<h4 style='margin: 0; font-size:18px;'>Sua Arte</h4>", unsafe_allow_html=True)
         if arquivo:
             st.image(arquivo, use_container_width=True)
         else:

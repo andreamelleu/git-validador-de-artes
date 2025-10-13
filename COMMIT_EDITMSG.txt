@@ -1,0 +1,21 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	new file:   INSTRUCOES_EXECUCAO.md
+#	new file:   README.md
+#	new file:   REFATORACAO_TAREFAS.md
+#	modified:   assets/teatros/grandes_atores/gabarito_divertix_carrossel_desktop.png
+#	new file:   common_utils.py
+#	new file:   config.py
+#	modified:   main.py
+#	modified:   regras.py
+#	new file:   streamlit_components.py
+#	new file:   test_app.py
+#	new file:   test_common_utils.py
+#	modified:   utils.py
+#
