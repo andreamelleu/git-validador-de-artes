@@ -90,28 +90,30 @@ def renderizar_sidebar_painel(teatro_inicial, regras, arquivo):
 def renderizar_area_visualizacao(regra, arquivo, teatro):
     """
     Renderiza a área de visualização com gabarito e arte
-    
-    Args:
-        regra: Regra de validação selecionada
-        arquivo: Arquivo de arte carregado
-        teatro: Teatro selecionado para determinar caminho das imagens
     """
-    from common_utils import verificar_existencia_imagem
     import os
-    
+    import streamlit as st
+    from config import DIRECTORY_CONFIG
+
     col_gabarito, col_arte = st.columns(2)
 
     with col_gabarito:
         st.subheader(f"Gabarito: {regra['descricao']}")
-        # Determina o diretório base baseado no teatro
-        diretorio_teatro = "grandes_atores" if "Grandes Atores" in teatro else "das_artes"
-        caminho_gabarito = verificar_existencia_imagem(diretorio_teatro, regra.get("gabarito_img", "default.png"))
-        
+
+        # Determina diretório base (mantendo a estrutura existente)
+        diretorio_teatro = (
+            DIRECTORY_CONFIG["GRANDES_ATORES_PATH"]
+            if "Grandes Atores" in teatro
+            else DIRECTORY_CONFIG["DAS_ARTES_PATH"]
+        )
+
+        caminho_gabarito = os.path.join(diretorio_teatro, regra.get("gabarito_img", "default.png"))
+
         if os.path.exists(caminho_gabarito):
             st.image(caminho_gabarito, use_container_width=True)
         else:
-            st.warning(f"Imagem de gabarito não encontrada em: {caminho_gabarito}")
-        
+            st.warning(f"⚠️ Gabarito não encontrado: {caminho_gabarito}")
+
     with col_arte:
         st.subheader("Sua Arte")
         if arquivo:
@@ -120,7 +122,6 @@ def renderizar_area_visualizacao(regra, arquivo, teatro):
             st.info("Aguardando upload...")
 
     st.divider()
-
 
 def renderizar_resultados(validar_button, arquivo, regra):
     """
