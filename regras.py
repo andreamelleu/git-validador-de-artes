@@ -1,5 +1,11 @@
 from dataclasses import dataclass
-from typing import Tuple, Optional
+from typing import Tuple, Optional, Dict, Any
+
+# Configuração de teatros disponíveis
+TEATROS_CONFIG: Dict[str, Any] = {
+    "Teatro dos Grandes Atores": {},
+    "Teatro das Artes": {}
+}
 
 @dataclass
 class RegraValidacao:
@@ -138,8 +144,13 @@ def carregar_regras(teatro: str) -> dict:
     Os nomes de arquivos de gabarito batem com os que existem em:
     assets/teatros/<grandes_atores|das_artes>/
     """
+    import os
+    from config import DIRECTORY_CONFIG
+    
+    # Determina o diretório base do teatro
     if teatro == "Teatro dos Grandes Atores":
-        return {
+        diretorio_teatro = DIRECTORY_CONFIG["GRANDES_ATORES_PATH"]
+        regras_dict = {
             "divertix_home": TeatroRegras.regra_divertix_home("gabarito_divertix_home.png").to_dict(),
             "divertix_atracao": TeatroRegras.regra_divertix_atracao("gabarito_divertix_tela_atracao.png").to_dict(),
             "divertix_carrossel_mobile": TeatroRegras.regra_divertix_carrossel_mobile("gabarito_divertix_carrossel_mobile.png").to_dict(),
@@ -149,10 +160,9 @@ def carregar_regras(teatro: str) -> dict:
             "banner_divertix": TeatroRegras.regra_banner_divertix("gabarito_banner_divertix.png").to_dict(),
             "banner_salas": TeatroRegras.regra_banner_salas("gabarito_banner_salas.png").to_dict(),
         }
-
     elif teatro == "Teatro das Artes":
-        # EXATAMENTE os arquivos que você mostrou:
-        return {
+        diretorio_teatro = DIRECTORY_CONFIG["DAS_ARTES_PATH"]
+        regras_dict = {
             "divertix_home": TeatroRegras.regra_divertix_home("gabarito_divertix_home.png").to_dict(),
             "divertix_atracao": TeatroRegras.regra_divertix_atracao("gabarito_divertix_tela_atracao.png").to_dict(),
             "divertix_carrossel_mobile": TeatroRegras.regra_divertix_carrossel_mobile("gabarito_divertix_carrossel_mobile.png").to_dict(),
@@ -160,6 +170,13 @@ def carregar_regras(teatro: str) -> dict:
             "site_teatro_home": TeatroRegras.regra_site_teatro_home("gabarito_site_home.png").to_dict(),
             # Sem TV/Banners aqui porque não existem nas suas pastas do das_artes
         }
-
     else:
         return {}
+    
+    # Adiciona gabarito_path (caminho completo) para cada regra
+    for regra_key, regra_data in regras_dict.items():
+        gabarito_img = regra_data.get("gabarito_img", "")
+        if gabarito_img:
+            regra_data["gabarito_path"] = os.path.join(diretorio_teatro, gabarito_img)
+    
+    return regras_dict

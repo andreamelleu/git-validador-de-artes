@@ -4,9 +4,7 @@ Aplicação principal do GIT Validador de Artes
 Layout horizontal exato conforme layout horizontal.png
 """
 import streamlit as st
-import os
 from streamlit_components import renderizar_sidebar_painel, renderizar_area_visualizacao, renderizar_resultados
-from common_utils import formatar_data_brasileira, verificar_existencia_imagem
 
 def aplicar_estilos_customizados():
     estilos_css = """
