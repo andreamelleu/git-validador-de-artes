@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from typing import Tuple, Optional
 
-
 @dataclass
 class RegraValidacao:
     """Representa uma regra de validação de arte"""
@@ -10,9 +9,9 @@ class RegraValidacao:
     altura: int
     formato_final: Tuple[str, ...]
     modo_cor: str
-    gabarito_img: str
     orientacao: str
     resolucao_dpi: Optional[int] = None
+    gabarito_img: str = ""
 
     def to_dict(self) -> dict:
         return {
@@ -97,7 +96,7 @@ class TeatroRegras:
     @staticmethod
     def regra_tv_externa(gabarito_img: str) -> RegraValidacao:
         return RegraValidacao(
-            descricao="TV 50” – 2160 x 3840 px",
+            descricao="TV 50" – 2160 x 3840 px",
             largura=2160,
             altura=3840,
             formato_final=("JPEG", "JPG", "PNG"),

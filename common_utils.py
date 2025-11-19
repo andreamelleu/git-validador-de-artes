@@ -127,7 +127,22 @@ def verificar_existencia_imagem(caminho: str, nome_arquivo: str) -> str:
     Returns:
         str: Caminho completo se existir, senão caminho padrão
     """
+    # Primeiro tenta o caminho exato
     caminho_completo = os.path.join("assets", "teatros", caminho, nome_arquivo)
     if os.path.exists(caminho_completo):
         return caminho_completo
+    
+    # Se não encontrar, procura por arquivos similares na pasta
+    pasta_teatro = os.path.join("assets", "teatros", caminho)
+    if os.path.exists(pasta_teatro):
+        for arquivo in os.listdir(pasta_teatro):
+            if arquivo.lower().endswith(('.png', '.jpg', '.jpeg')):
+                # Remove a extensão do nome_arquivo para comparar
+                nome_sem_ext = os.path.splitext(nome_arquivo)[0]
+                arquivo_sem_ext = os.path.splitext(arquivo)[0]
+                
+                # Verifica se o nome base é similar
+                if nome_sem_ext.lower() in arquivo_sem_ext.lower() or arquivo_sem_ext.lower() in nome_sem_ext.lower():
+                    return os.path.join(pasta_teatro, arquivo)
+    
     return f"assets/default.png"
