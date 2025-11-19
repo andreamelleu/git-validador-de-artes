@@ -34,7 +34,7 @@ class TeatroRegras:
     @staticmethod
     def regra_divertix_home(gabarito_img: str) -> RegraValidacao:
         return RegraValidacao(
-            descricao="Divertix Home do Site – 370 x 550 px",
+            descricao="Divertix Home do Site - 370 x 550 px",
             largura=370,
             altura=550,
             formato_final=("JPEG", "JPG", "PNG"),
@@ -46,7 +46,7 @@ class TeatroRegras:
     @staticmethod
     def regra_divertix_atracao(gabarito_img: str) -> RegraValidacao:
         return RegraValidacao(
-            descricao="Divertix Tela da Atração – 740 x 380 px",
+            descricao="Divertix Tela da Atracao - 740 x 380 px",
             largura=740,
             altura=380,
             formato_final=("JPEG", "JPG", "PNG"),
@@ -58,7 +58,7 @@ class TeatroRegras:
     @staticmethod
     def regra_divertix_carrossel_mobile(gabarito_img: str) -> RegraValidacao:
         return RegraValidacao(
-            descricao="Divertix Carrossel Mobile – 375 x 471 px",
+            descricao="Divertix Carrossel Mobile - 375 x 471 px",
             largura=375,
             altura=471,
             formato_final=("JPEG", "JPG", "PNG"),
@@ -70,7 +70,7 @@ class TeatroRegras:
     @staticmethod
     def regra_divertix_desktop(gabarito_img: str) -> RegraValidacao:
         return RegraValidacao(
-            descricao="Divertix Carrossel Desktop – 1120 x 400 px",
+            descricao="Divertix Carrossel Desktop - 1120 x 400 px",
             largura=1120,
             altura=400,
             formato_final=("JPEG", "JPG", "PNG"),
@@ -82,7 +82,7 @@ class TeatroRegras:
     @staticmethod
     def regra_site_teatro_home(gabarito_img: str) -> RegraValidacao:
         return RegraValidacao(
-            descricao="Site do Teatro – 768 x 1024 px",
+            descricao="Site do Teatro - 768 x 1024 px",
             largura=768,
             altura=1024,
             formato_final=("JPEG", "JPG", "PNG"),
@@ -96,7 +96,7 @@ class TeatroRegras:
     @staticmethod
     def regra_tv_externa(gabarito_img: str) -> RegraValidacao:
         return RegraValidacao(
-            descricao="TV 50" – 2160 x 3840 px",
+            descricao="TV 50\" - 2160 x 3840 px",
             largura=2160,
             altura=3840,
             formato_final=("JPEG", "JPG", "PNG"),
@@ -108,7 +108,7 @@ class TeatroRegras:
     @staticmethod
     def regra_banner_divertix(gabarito_img: str) -> RegraValidacao:
         return RegraValidacao(
-            descricao="Banner Divertix – 255 x 240 cm",
+            descricao="Banner Divertix - 255 x 240 cm",
             largura=15059,
             altura=14173,
             resolucao_dpi=150,
@@ -121,7 +121,7 @@ class TeatroRegras:
     @staticmethod
     def regra_banner_salas(gabarito_img: str) -> RegraValidacao:
         return RegraValidacao(
-            descricao="Banner Salas – 290 x 240 cm",
+            descricao="Banner Salas - 290 x 240 cm",
             largura=17126,
             altura=14173,
             resolucao_dpi=150,
