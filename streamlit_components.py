@@ -9,18 +9,19 @@ TIPOS_ARQUIVO_PERMITIDOS = ["jpg", "jpeg", "png"]
 LOGO_MYWORK = "assets/comuns/logo_mywork_white.png"
 
 MESSAGES = {
-    "titulo_principal": "GIT Validador de Artes",
+    "titulo_principal": "GIT - Validador de Formatos de Artes",
     "texto_intro": """
         <div style='font-size: 0.95em; line-height: 1.6;'>
-            Olá, produtor Teatrali, verifique se todas as suas artes estão aprovadas para subir no drive.<br>
-            Qualquer dúvida, fale com o Procópio e solicite para ele enviar o que precisar!
+            Olá, produtor Teatrali!<br><br>
+            Validar formato das suas artes, conforme os gabaritos e checklist.<br><br>
+            Qualquer dúvida, fale com o Procópio e solicite o que precisar!
         </div>
     """,
     "selecione_teatro": "Selecione o Teatro:",
     "selecione_gabarito": "Selecione o Gabarito:",
     "suba_arte": "Suba a sua Arte:",
     "aguardando_upload": "Aguardando upload...",
-    "validar_arte": "Validar Arte",
+    "validar_arte": "Validar Formato da Arte",
     "gabarito_nao_encontrado": "Imagem de gabarito não encontrada em:",
     "nenhuma_regra": "Nenhuma regra encontrada para este teatro",
     "upload_antes_validar": "Por favor, faça o upload de uma arte antes de validar.",

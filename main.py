@@ -45,12 +45,16 @@ def aplicar_estilos_customizados():
             [data-testid="stImage"] img {
                 width: 100% !important;
                 height: auto !important;
-                max-height: 350px !important;
+                max-width: 100% !important;
                 object-fit: contain !important;
+            }
+            
+            [data-testid="stMain"] .stImage {
+                width: 100% !important;
             }
 
             html, body {
-                overflow: hidden !important;
+                overflow: auto !important;
                 height: 100vh !important;
             }
 
@@ -71,14 +75,14 @@ def aplicar_estilos_customizados():
             }
 
             [data-testid="stMain"] {
-                overflow: hidden !important;
+                overflow: auto !important;
                 height: 100vh !important;
             }
 
             [data-testid="stMain"] .main .block-container {
                 padding: 1rem !important;
                 max-width: none !important;
-                height: 100vh !important;
+                min-height: 100vh !important;
                 display: flex !important;
                 flex-direction: column !important;
             }
@@ -86,7 +90,6 @@ def aplicar_estilos_customizados():
             [data-testid="stMain"] .stColumns {
                 flex: 0 0 auto !important;
                 margin-bottom: 1rem !important;
-                max-height: 70vh !important;
             }
 
             .art-placeholder {
