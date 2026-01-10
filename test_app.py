@@ -20,7 +20,7 @@ def test_imports():
         from common_utils import verificar_arte, formatar_data_brasileira
         print("OK - common_utils importado")
         
-        from streamlit_components import renderizar_cabecalho
+        from streamlit_components import renderizar_sidebar_painel
         print("OK - streamlit_components importado")
         
         # Testa streamlit

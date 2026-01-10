@@ -95,8 +95,17 @@ Após executar `streamlit run main.py`, a aplicação estará disponível em:
 
 ## 🔍 Solução de Problemas
 
-### Erro: "Python não foi encontrado"
-- **Solução**: Instale o Python e marque "Add Python to PATH"
+### Erro: "Python não foi encontrado" ou "Python is not installed"
+- **Sintoma**: Ao tentar rodar o comando, aparece uma mensagem dizendo que o Python não foi encontrado ou uma janela abre a Microsoft Store.
+- **Solução 1 (Configurar VS Code)**:
+  1. No VS Code, pressione `F1` ou `Ctrl+Shift+P`.
+  2. Digite "Python: Select Interpreter".
+  3. Se aparecer "Python is not installed", você precisa instalar o Python (veja Opção 1 acima).
+  4. Se aparecerem caminhos (ex: `C:\Program Files\Python312\python.exe`), selecione um deles.
+- **Solução 2 (Instalar Python)**: 
+  - Baixe e instale do [site oficial](https://www.python.org/downloads/).
+  - **IMPORTANTE**: Na primeira tela de instalação, marque a caixa **"Add Python to PATH"**.
+  - Reinicie o VS Code após instalar.
 
 ### Erro: "ModuleNotFoundError"
 - **Solução**: Execute `pip install -r requirements.txt`

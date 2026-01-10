@@ -10,6 +10,8 @@ Sistema de validação de artes para teatros, desenvolvido com Streamlit e segui
 - ✅ **Processamento em Lote**: Suporte para arquivos ZIP com múltiplas imagens
 - ✅ **Logs de Validação**: Geração de relatórios em CSV
 - ✅ **Gabaritos Visuais**: Exibição de gabaritos para comparação
+- ✅ **Checklist Visual**: Itens de verificação humana (logos, legibilidade, sangria) exibidos após a validação.
+
 
 ## 🏗️ Estrutura do Projeto
 

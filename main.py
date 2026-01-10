@@ -70,50 +70,208 @@ def aplicar_estilos_customizados():
                 background-color: #2c2c34 !important;
             }
 
-            .stMarkdown, .stText, .stSelectbox label, .stFileUploader label {
+            /* Remove top white bar and header */
+            header[data-testid="stHeader"] {
+                display: none !important;
+            }
+            
+            /* Remove standard padding to use full 100% space */
+            .main .block-container {
+                padding-top: 1rem !important;
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+                max-width: 100% !important;
+            }
+
+            /* Fix styles from previous step */
+            .stMarkdown, .stText, .stSelectbox label, .stFileUploader label, h1, h2, h3, p {
                 color: #ffffff !important;
+            }
+
+            /* Ensure input text remains visible (usually black on white) */
+            div[data-baseweb="select"] span {
+                color: #31333F !important;
+            }
+            
+            /* Fix for the selected value in the dropdown */
+            div[data-testid="stSelectbox"] div[data-baseweb="select"] div {
+                color: #31333F !important;
             }
 
             [data-testid="stMain"] {
                 overflow: auto !important;
                 height: 100vh !important;
+                background-color: #1a1a1a !important;
+            }
+            
+            /* Remove gap at top of sidebar and fix width */
+             section[data-testid="stSidebar"] {
+                top: 0 !important; 
+                margin-top: 0 !important;
+                width: 400px !important;
+                min-width: 400px !important;
+            }
+            
+            /* Hide Sidebar Toggle (arrows) and Toolbar */
+            [data-testid="collapsedControl"] {
+                display: none !important;
+            }
+            [data-testid="stToolbar"] {
+                display: none !important;
             }
 
-            [data-testid="stMain"] .main .block-container {
-                padding: 1rem !important;
-                max-width: none !important;
-                min-height: 100vh !important;
+            /* Hide Scrollbar in Sidebar */
+            section[data-testid="stSidebar"] > div {
+                scrollbar-width: none; /* Firefox */
+                -ms-overflow-style: none;  /* IE 10+ */
+            }
+            section[data-testid="stSidebar"] > div::-webkit-scrollbar {
+                display: none; /* Chrome/Safari/Webkit */
+                width: 0px;
+                background: transparent;
+            }
+
+            /* Limit image size in main area to avoid huge posters */
+            [data-testid="stMain"] [data-testid="stImage"] img {
+                max-height: 350px !important;
+                width: auto !important;
+                object-fit: contain !important;
+            }
+            [data-testid="stMain"] [data-testid="stImage"] {
                 display: flex !important;
-                flex-direction: column !important;
-            }
-
-            [data-testid="stMain"] .stColumns {
-                flex: 0 0 auto !important;
-                margin-bottom: 1rem !important;
-            }
-
-            .art-placeholder {
-                width: 100% !important;
-                height: 400px !important;
-                background-color: #3a3a3a !important;
-                border: 2px dashed #666666 !important;
-                border-radius: 8px !important;
-                display: flex !important;
-                align-items: center !important;
                 justify-content: center !important;
-                color: #cccccc !important;
-                font-size: 1.1em !important;
+            }
+            
+            /* Fix visibility of filenames in sidebar file uploader */
+            [data-testid="stFileUploader"] div[role="listitem"] div,
+            [data-testid="stFileUploader"] div[role="listitem"] span {
+                color: #ffffff !important;
+            }
+            [data-testid="stFileUploader"] div[role="listitem"] small {
+                 color: #cccccc !important;
+            }
+            
+            /* Fix "Browse files" button text (Secondary button needs dark text) */
+            [data-testid="stFileUploader"] button[kind="secondary"] {
+                color: #31333F !important;
+            }
+            [data-testid="stFileUploader"] button[kind="secondary"] * {
+                color: #31333F !important;
             }
 
-            .upload-status {
-                background-color: #1e3a8a !important;
-                color: white !important;
-                padding: 15px !important;
-                border-radius: 8px !important;
-                text-align: center !important;
-                font-weight: 500 !important;
-                margin-bottom: 15px !important;
+            /* Fix UPLOADED FILENAMES - Target everything in the list items (ul/li usually) */
+            [data-testid="stFileUploader"] ul,
+            [data-testid="stFileUploader"] li,
+            [data-testid="stFileUploader"] li div,
+            [data-testid="stFileUploader"] li span,
+            [data-testid="stFileUploader"] li small {
+                color: #ffffff !important;
             }
+            
+            /* Fallback: If not ul/li, target the second main div (usually the list) */
+            [data-testid="stFileUploader"] > div:nth-child(2) * {
+                 color: #ffffff !important;
+            }
+
+            /* Specific fix for "X" (Delete) button inside list item */
+            [data-testid="stFileUploader"] button[kind="tertiary"], /* Delete is often tertiary */
+            [data-testid="stFileUploader"] button[kind="header"]    /* Or header style? */
+            {
+                 color: #ff4b4b !important;
+                 border: none !important;
+            }
+            /* Explicit delete button ID again */
+            button[data-testid="stFileUploaderDeleteBtn"] {
+                 color: #ff4b4b !important;
+            }
+            button[data-testid="stFileUploaderDeleteBtn"] svg {
+                fill: #ff4b4b !important;
+                stroke: #ff4b4b !important;
+            }
+
+            /* Fix Expanders - FORCE DARK THEME STYLE (Background Dark + Text White) */
+            
+            /* Header (Summary) */
+            [data-testid="stExpander"] {
+                background-color: transparent !important;
+                border: none !important;
+            }
+            [data-testid="stExpander"] summary {
+                background-color: #ffffff !important;
+                color: #000000 !important; /* Forces Black Text */
+                border: 1px solid #cccccc !important;
+                border-radius: 5px;
+            }
+            [data-testid="stExpander"] summary p, 
+            [data-testid="stExpander"] summary span,
+            [data-testid="stExpander"] summary div {
+                color: #000000 !important;
+            }
+            [data-testid="stExpander"] summary:hover {
+                color: #ffffff !important;
+                background-color: #000000 !important;
+            }
+
+            /* Content Body (Details) */
+            [data-testid="stExpanderDetails"] {
+                background-color: transparent !important; /* Inherit main dark bg */
+                color: #ffffff !important;
+            }
+            [data-testid="stExpanderDetails"] p,
+            [data-testid="stExpanderDetails"] div, 
+            [data-testid="stExpanderDetails"] span,
+            [data-testid="stExpanderDetails"] ul,
+            [data-testid="stExpanderDetails"] li {
+                color: #ffffff !important;
+            }
+            
+            /* Ensure Alerts (Error/Success) keep their readable text colors */
+            [data-testid="stAlert"] p, [data-testid="stAlert"] div {
+                 color: inherit !important;
+            }
+
+            /* HOVER STYLES - "Hover Preto Letras Brancas Sempre" */
+            
+            /* Buttons Standard (Normal State) - Includes Download Button */
+            div.stButton > button, div.stDownloadButton > button {
+                color: #ffffff !important; /* White Text */
+                background-color: #000000 !important; /* Black Background */
+                border-color: #ffffff !important; /* White Border */
+            }
+            div.stButton > button *, div.stDownloadButton > button * {
+                color: #ffffff !important;
+            }
+            /* Specifically target the text inside the download button */
+            div.stDownloadButton > button p {
+                color: #ffffff !important;
+            }
+
+            /* Buttons Hover - Includes Download Button */
+            div.stButton > button:hover, div.stDownloadButton > button:hover {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+                border-color: #000000 !important;
+            }
+            div.stButton > button:hover *, div.stDownloadButton > button:hover * {
+                color: #000000 !important;
+            }
+            div.stDownloadButton > button:hover p {
+                color: #000000 !important;
+            }
+            
+            /* Expander Header Hover */
+            [data-testid="stExpander"] summary:hover {
+                background-color: #000000 !important;
+                color: #ffffff !important;
+            }
+            [data-testid="stExpander"] summary:hover p,
+            [data-testid="stExpander"] summary:hover span,
+            [data-testid="stExpander"] summary:hover svg {
+                color: #ffffff !important;
+                fill: #ffffff !important;
+            }
+
+
         </style>
     """
     st.markdown(estilos_css, unsafe_allow_html=True)
@@ -121,16 +279,65 @@ def aplicar_estilos_customizados():
 def main():
     st.set_page_config(
         page_title="GIT Validador de Artes",
-        page_icon="🎭",
+        page_icon="favicon.ico",
         layout="wide",
         initial_sidebar_state="expanded"
     )
 
     aplicar_estilos_customizados()
 
-    teatro, regra, arquivo, validar_button = renderizar_sidebar_painel()
-    renderizar_area_visualizacao(regra, arquivo)
-    renderizar_resultados(validar_button, arquivo, regra)
+    aplicar_estilos_customizados()
+
+    # --- SISTEMA DE LOGIN INTEGRADO ---
+    if "logged_in" not in st.session_state:
+        st.session_state["logged_in"] = False
+
+    # 1. Verifica login via URL (Link do Teatrali)
+    # Exemplo de link: https://git-validador.streamlit.app/?user=producao_auto
+    query_params = st.query_params
+    user_param = query_params.get("user")
+    
+    if not st.session_state["logged_in"] and user_param:
+        # Aqui você pode adicionar uma validação mais segura (token, hash, etc.)
+        # Por enquanto, aceita qualquer user vindo do sistema para facilitar a integração
+        st.toast(f"Autenticado automaticamente como: {user_param}", icon="🔐")
+        st.session_state["logged_in"] = True
+        
+    # 2. Verifica login manual (se não entrou via URL)
+    if not st.session_state["logged_in"]:
+        col1, col2, col3 = st.columns([1, 2, 1])
+        with col2:
+            st.markdown("### 🔐 Acesso à Produção")
+            usuario = st.text_input("Usuário")
+            senha = st.text_input("Senha", type="password")
+            
+            if st.button("Entrar", use_container_width=True):
+                if usuario == "producao" and senha == "teatrali": # Credenciais Fixas Simples
+                    st.session_state["logged_in"] = True
+                    st.rerun()
+                else:
+                    st.error("Credenciais inválidas.")
+        return # Interrompe a execução do restante do app
+
+    # Menu de Logout
+    with st.sidebar:
+        if st.button("🚪 Sair", key="logout_btn"):
+            st.session_state["logged_in"] = False
+            # Limpa params da URL ao sair para não relogar automático
+            st.query_params.clear() 
+            st.rerun()
+
+    teatro, regra, arquivos_raw, validar_button = renderizar_sidebar_painel()
+    
+    # Inicializa conjunto de arquivos removidos se ainda não existir
+    if "removed_files" not in st.session_state:
+        st.session_state["removed_files"] = set()
+        
+    # Filtra os arquivos (remove os que estão na "lixeira" temporária)
+    arquivos = [a for a in arquivos_raw if (a.name, a.size) not in st.session_state["removed_files"]]
+    
+    renderizar_area_visualizacao(regra, arquivos)
+    renderizar_resultados(validar_button, arquivos, regra)
 
 if __name__ == "__main__":
     main()
