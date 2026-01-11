@@ -119,6 +119,14 @@ def aplicar_estilos_customizados():
             [data-testid="stToolbar"] {
                 display: none !important;
             }
+            
+            /* Hide Footer with source code link */
+            footer {
+                display: none !important;
+            }
+            [data-testid="stStatusWidget"] {
+                display: none !important;
+            }
 
             /* Hide Scrollbar in Sidebar */
             section[data-testid="stSidebar"] > div {
@@ -286,8 +294,6 @@ def main():
 
     aplicar_estilos_customizados()
 
-    aplicar_estilos_customizados()
-
     # --- SISTEMA DE LOGIN INTEGRADO ---
     if "logged_in" not in st.session_state:
         st.session_state["logged_in"] = False
@@ -319,12 +325,12 @@ def main():
                     st.error("Credenciais inválidas.")
         return # Interrompe a execução do restante do app
 
-    # Menu de Logout
-    with st.sidebar:
+    # Botão de Logout no canto superior direito
+    col_left, col_right = st.columns([6, 1])
+    with col_right:
         if st.button("🚪 Sair", key="logout_btn"):
             st.session_state["logged_in"] = False
-            # Limpa params da URL ao sair para não relogar automático
-            st.query_params.clear() 
+            st.query_params.clear()
             st.rerun()
 
     teatro, regra, arquivos_raw, validar_button = renderizar_sidebar_painel()
