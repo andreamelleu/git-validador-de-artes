@@ -177,7 +177,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
             st.rerun()
 
         st.link_button("Fale com o Procópio", "https://wa.me/5521968815522", use_container_width=True)
-        st.link_button("🚀 Fazer Deploy", "https://share.streamlit.io/deploy", use_container_width=True)
+        st.link_button("← Voltar ao Sistema Teatrali", "https://teatrali.netlify.app/", use_container_width=True)
         
         # --- ÁREA DE HISTÓRICO ---
         if st.checkbox("📜 Ver Histórico Recente"):

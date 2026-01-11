@@ -127,6 +127,14 @@ def aplicar_estilos_customizados():
             [data-testid="stStatusWidget"] {
                 display: none !important;
             }
+            
+            /* Hide "Manage app" menu (Streamlit Cloud) */
+            [data-testid="manage-app-button"] {
+                display: none !important;
+            }
+            button[kind="header"] {
+                display: none !important;
+            }
 
             /* Hide Scrollbar in Sidebar */
             section[data-testid="stSidebar"] > div {
