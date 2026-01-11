@@ -294,45 +294,6 @@ def main():
 
     aplicar_estilos_customizados()
 
-    # --- SISTEMA DE LOGIN INTEGRADO ---
-    if "logged_in" not in st.session_state:
-        st.session_state["logged_in"] = False
-
-    # 1. Verifica login via URL (Link do Teatrali)
-    # Exemplo de link: https://git-validador.streamlit.app/?user=producao_auto
-    query_params = st.query_params
-    user_param = query_params.get("user")
-    
-    if not st.session_state["logged_in"] and user_param:
-        # Aqui você pode adicionar uma validação mais segura (token, hash, etc.)
-        # Por enquanto, aceita qualquer user vindo do sistema para facilitar a integração
-        st.toast(f"Autenticado automaticamente como: {user_param}", icon="🔐")
-        st.session_state["logged_in"] = True
-        
-    # 2. Verifica login manual (se não entrou via URL)
-    if not st.session_state["logged_in"]:
-        col1, col2, col3 = st.columns([1, 2, 1])
-        with col2:
-            st.markdown("### 🔐 Acesso à Produção")
-            usuario = st.text_input("Usuário")
-            senha = st.text_input("Senha", type="password")
-            
-            if st.button("Entrar", use_container_width=True):
-                if usuario == "producao" and senha == "teatrali": # Credenciais Fixas Simples
-                    st.session_state["logged_in"] = True
-                    st.rerun()
-                else:
-                    st.error("Credenciais inválidas.")
-        return # Interrompe a execução do restante do app
-
-    # Botão de Logout no canto superior direito
-    col_left, col_right = st.columns([6, 1])
-    with col_right:
-        if st.button("🚪 Sair", key="logout_btn"):
-            st.session_state["logged_in"] = False
-            st.query_params.clear()
-            st.rerun()
-
     teatro, regra, arquivos_raw, validar_button = renderizar_sidebar_painel()
     
     # Inicializa conjunto de arquivos removidos se ainda não existir
