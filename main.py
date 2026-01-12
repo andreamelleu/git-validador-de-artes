@@ -3,8 +3,13 @@
 Aplicação principal do GIT Validador de Artes
 Layout horizontal exato conforme layout horizontal.png
 """
+import os
+from dotenv import load_dotenv
 import streamlit as st
 from streamlit_components import renderizar_sidebar_painel, renderizar_area_visualizacao, renderizar_resultados
+
+# Carrega variáveis de ambiente do arquivo .env (Supabase credentials)
+load_dotenv()
 
 def aplicar_estilos_customizados():
     estilos_css = """

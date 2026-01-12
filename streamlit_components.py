@@ -166,6 +166,43 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
                 unique_names = sorted({a.name for a in arquivos_validos})
                 for name in unique_names:
                     st.markdown(f"📄 {name}")
+        st.markdown("---")
+        
+        # Botão para acessar Drive de Artes (recebe link via URL ou Processo ID)
+        link_drive_url = st.query_params.get("link_drive", "")
+        processo_id_url = st.query_params.get("processo_id", "")
+        
+        link_final = None
+        
+        # 1. Prioridade: Link direto na URL
+        if link_drive_url:
+            link_final = link_drive_url
+            
+        # 2. Se não tem link, mas tem ID do processo, busca no banco (mesmo sem nome de espetáculo)
+        elif processo_id_url:
+            try:
+                from supabase_utils import buscar_link_drive_artes
+                # Passa o ID. O nome/teatro são opcionais nesse caso.
+                link_final = buscar_link_drive_artes("", "", processo_id_url)
+            except Exception:
+                pass
+                
+        # 3. Se não tem nada na URL, depende do nome digitado
+        elif espetaculo_nome and espetaculo_nome.strip():
+            try:
+                from supabase_utils import buscar_link_drive_artes
+                link_final = buscar_link_drive_artes(espetaculo_nome, teatro_selecionado)
+            except Exception:
+                pass
+
+        # Exibe o botão se encontrou algum link
+        if link_final:
+            st.link_button(
+                "📁 Acessar Drive de Artes", 
+                link_final, 
+                use_container_width=True,
+                help="Abre a pasta do Drive com todas as artes deste espetáculo"
+            )
 
         st.markdown("---")
         botao_validar_clicado = st.button(MESSAGES["validar_arte"], use_container_width=True)
