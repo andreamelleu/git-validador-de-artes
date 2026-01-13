@@ -1,6 +1,10 @@
 import os
 from supabase import create_client, Client
 from typing import List, Dict, Any
+from dotenv import load_dotenv
+
+# Carrega variáveis locais se existirem
+load_dotenv()
 
 # Inicializa o cliente apenas se as chaves estiverem presentes
 def get_supabase_client() -> Client:
@@ -58,7 +62,6 @@ def buscar_link_drive_artes(espetaculo: str, teatro: str, processo_id: str = Non
     try:
         print(f"🔍 Buscando link do Drive:")
         
-        # Se tiver processo_id, busca diretamente
         if processo_id:
             print(f"   Processo ID: {processo_id}")
             try:
@@ -79,15 +82,29 @@ def buscar_link_drive_artes(espetaculo: str, teatro: str, processo_id: str = Non
                 print(f"   ❌ Erro ao buscar por ID: {e}")
                 return ""
         
-        # Fallback: busca por nome (menos confiável)
-        print(f"   Espetáculo: {espetaculo}")
+        # Fallback: busca por nome da atração (menos confiável)
+        print(f"   Atração: {espetaculo}")
         print(f"   Teatro: {teatro}")
-        print("   ⚠️ Buscando sem processo_id - resultado pode ser impreciso")
+        print("   ⚠️ Buscando sem processo_id - tentando encontrar por nome da atração")
         
-        # Nota: Esta parte pode não funcionar se os nomes das colunas forem diferentes
-        # É melhor sempre passar o processo_id via URL
-        return ""
+        try:
+            # Tenta buscar usando 'atracao' e 'teatro_id'
+            # Usando ilike para ignorar maiúsculas/minúsculas
+            response = supabase.table("processos").select("link_drive").ilike("atracao", f"%{espetaculo}%").eq("teatro_id", teatro_id).execute()
             
+            if response.data and len(response.data) > 0:
+                link = response.data[0].get("link_drive", "")
+                if link:
+                    print(f"   ✅ Link encontrado via busca por nome: {link[:50]}...")
+                    return link
+            
+            print("   ❌ Nenhuma atração encontrada com esses critérios")
+            return ""
+            
+        except Exception as search_err:
+             print(f"   ❌ Erro na busca por nome: {search_err}")
+             return ""
+
     except Exception as e:
         print(f"❌ Erro ao buscar link do Drive: {e}")
         import traceback
