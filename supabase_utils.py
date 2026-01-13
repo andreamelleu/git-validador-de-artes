@@ -60,6 +60,27 @@ def buscar_link_drive_artes(espetaculo: str, teatro: str, processo_id: str = Non
         return ""
         
     try:
+        # Mapeia o nome do teatro para o ID correto (UUIDs do Supabase)
+        teatro_map = {
+            "Teatro das Artes": "8b1a5b21-5847-46be-94c2-45fd7c761376",
+            "Teatro dos Grandes Atores": "b11871eb-7621-4fdc-99ca-77177920f465",
+            # Aliases e compatibilidade
+            "DAS_ARTES": "8b1a5b21-5847-46be-94c2-45fd7c761376",
+            "ARTES": "8b1a5b21-5847-46be-94c2-45fd7c761376",
+            "GRANDES_ATORES": "b11871eb-7621-4fdc-99ca-77177920f465",
+        }
+        
+        # Tenta pegar pelo nome exato, ou normaliza se precisar
+        teatro_id = teatro_map.get(teatro)
+        if not teatro_id:
+             # Tenta algumas variações se não achou direto
+             if "Artes" in teatro:
+                 teatro_id = teatro_map["Teatro das Artes"]
+             elif "Grandes Atores" in teatro:
+                 teatro_id = teatro_map["Teatro dos Grandes Atores"]
+             else:
+                 teatro_id = teatro.lower() # Fallback arriscado
+        
         print(f"🔍 Buscando link do Drive:")
         
         if processo_id:
