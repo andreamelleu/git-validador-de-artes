@@ -54,17 +54,28 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
                 [data-testid="stSidebar"] [data-testid="stButton"] button[kind="primary"] {
                     background-color: #28a745 !important;
                     border: 1px solid #28a745 !important;
-                    color: white !important;
+                    color: #FFFFFF !important;
                 }
+                /* Force text inside the button to be white */
+                [data-testid="stSidebar"] button[kind="primary"] p,
+                [data-testid="stSidebar"] [data-testid="stButton"] button[kind="primary"] p {
+                    color: #FFFFFF !important;
+                }
+                
                 [data-testid="stSidebar"] button[kind="primary"]:hover,
                 [data-testid="stSidebar"] [data-testid="stButton"] button[kind="primary"]:hover {
                     background-color: #218838 !important;
                     border-color: #218838 !important;
-                    color: white !important;
+                    color: #FFFFFF !important;
                 }
+                [data-testid="stSidebar"] button[kind="primary"]:hover p,
+                [data-testid="stSidebar"] [data-testid="stButton"] button[kind="primary"]:hover p {
+                    color: #FFFFFF !important;
+                }
+
                 [data-testid="stSidebar"] button[kind="primary"]:focus:not(:active) {
                     background-color: #28a745 !important;
-                    color: white !important;
+                    color: #FFFFFF !important;
                     border-color: #28a745 !important;
                     box-shadow: none !important;
                 }
