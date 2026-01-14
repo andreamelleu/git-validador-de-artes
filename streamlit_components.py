@@ -214,6 +214,14 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
             st.rerun()
 
         st.link_button("Fale com o Procópio", "https://wa.me/5521968815522", use_container_width=True)
+        
+        # Links de Gabaritos (Placeholder - Aguardando URLs reais)
+        st.markdown("---")
+        st.markdown("**📥 Gabaritos Photoshop:**")
+        st.link_button("🎭 Teatro das Artes", "https://docs.google.com/document/d/1XyS_qF_O2I_Jd6QxP9V9jX5QJ4_5QJ4_5QJ4_5QJ4/edit", use_container_width=True, help="Baixar gabaritos .PSD") 
+        st.link_button("🎭 Grandes Atores", "https://docs.google.com/document/d/1XyS_qF_O2I_Jd6QxP9V9jX5QJ4_5QJ4_5QJ4_5QJ4/edit", use_container_width=True, help="Baixar gabaritos .PSD")
+
+        st.markdown("---")
         st.link_button("← Voltar ao Sistema Teatrali", "https://teatrali.netlify.app/", use_container_width=True)
         
         # --- ÁREA DE HISTÓRICO ---
