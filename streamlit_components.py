@@ -215,7 +215,6 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
                 help="Abre a pasta do Drive com todas as artes deste espetáculo"
             )
 
-        st.markdown("---")
         botao_validar_clicado = st.button(MESSAGES["validar_arte"], use_container_width=True)
         
         # Se resetar a seleção, limpa também a lixeira para evitar inconsistências futuras
@@ -227,12 +226,10 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
         st.link_button("Fale com o Procópio", "https://wa.me/5521968815522", use_container_width=True)
         
         # Links de Gabaritos (Placeholder - Aguardando URLs reais)
-        st.markdown("---")
         st.markdown("**📥 Gabaritos Photoshop:**")
-        st.link_button("🎭 Teatro das Artes", "https://drive.google.com/drive/folders/1hphPn7oWtfsAH9Cp5hoHD4FIuingzlhD", use_container_width=True, help="Baixar gabaritos .PSD") 
-        st.link_button("🎭 Teatro dos Grandes Atores", "/Gabaritos Teatro dos Grandes Atores.zip", use_container_width=True, help="Baixar gabaritos .PSD")
+        st.link_button("🎭 Teatro das Artes", "https://drive.google.com/drive/folders/1hphPn7oWtfsAH9Cp5hoHD4FIuingzlhD", use_container_width=True) 
+        st.link_button("🎭 Teatro dos Grandes Atores", "/Gabaritos Teatro dos Grandes Atores.zip", use_container_width=True)
 
-        st.markdown("---")
         st.link_button("← Voltar ao Sistema Teatrali", "https://teatrali.netlify.app/", use_container_width=True)
         
         # --- ÁREA DE HISTÓRICO ---
