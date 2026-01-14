@@ -49,6 +49,20 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
                     background-color: black !important;
                     border-color: black !important;
                 }
+                button[kind="primary"] {
+                    background-color: #28a745 !important;
+                    border: none !important;
+                    color: white !important;
+                }
+                button[kind="primary"]:hover {
+                    background-color: #218838 !important;
+                    color: white !important;
+                }
+                button[kind="primary"]:focus:not(:active) {
+                    background-color: #28a745 !important;
+                    color: white !important;
+                    border-color: #28a745 !important;
+                }
             </style>
         """, unsafe_allow_html=True)
 
@@ -215,7 +229,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
                 help="Abre a pasta do Drive com todas as artes deste espetáculo"
             )
 
-        botao_validar_clicado = st.button(MESSAGES["validar_arte"], use_container_width=True)
+        botao_validar_clicado = st.button(MESSAGES["validar_arte"], use_container_width=True, type="primary")
         
         # Se resetar a seleção, limpa também a lixeira para evitar inconsistências futuras
         if arquivos_carregados and st.button("🗑️ Limpar Seleção", use_container_width=True):
