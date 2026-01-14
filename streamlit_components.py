@@ -218,8 +218,8 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
         # Links de Gabaritos (Placeholder - Aguardando URLs reais)
         st.markdown("---")
         st.markdown("**📥 Gabaritos Photoshop:**")
-        st.link_button("🎭 Teatro das Artes", "https://docs.google.com/document/d/1XyS_qF_O2I_Jd6QxP9V9jX5QJ4_5QJ4_5QJ4_5QJ4/edit", use_container_width=True, help="Baixar gabaritos .PSD") 
-        st.link_button("🎭 Grandes Atores", "https://docs.google.com/document/d/1XyS_qF_O2I_Jd6QxP9V9jX5QJ4_5QJ4_5QJ4_5QJ4/edit", use_container_width=True, help="Baixar gabaritos .PSD")
+        st.link_button("🎭 Teatro das Artes", "https://drive.google.com/drive/folders/1hphPn7oWtfsAH9Cp5hoHD4FIuingzlhD", use_container_width=True, help="Baixar gabaritos .PSD") 
+        st.link_button("🎭 Grandes Atores", "/Gabaritos Teatro dos Grandes Atores.zip", use_container_width=True, help="Baixar gabaritos .PSD")
 
         st.markdown("---")
         st.link_button("← Voltar ao Sistema Teatrali", "https://teatrali.netlify.app/", use_container_width=True)
