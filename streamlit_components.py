@@ -38,6 +38,17 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
                 [data-testid="stSidebar"] [data-testid="stImage"] img {
                     width: 200px !important;
                 }
+                /* Style for Link Buttons to ensure black text */
+                [data-testid="stLinkButton"] a {
+                    color: black !important;
+                    background-color: white !important;
+                    border: 1px solid #e0e0e0 !important;
+                }
+                [data-testid="stLinkButton"] a:hover {
+                    color: white !important;
+                    background-color: black !important;
+                    border-color: black !important;
+                }
             </style>
         """, unsafe_allow_html=True)
 
@@ -219,7 +230,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
         st.markdown("---")
         st.markdown("**📥 Gabaritos Photoshop:**")
         st.link_button("🎭 Teatro das Artes", "https://drive.google.com/drive/folders/1hphPn7oWtfsAH9Cp5hoHD4FIuingzlhD", use_container_width=True, help="Baixar gabaritos .PSD") 
-        st.link_button("🎭 Grandes Atores", "/Gabaritos Teatro dos Grandes Atores.zip", use_container_width=True, help="Baixar gabaritos .PSD")
+        st.link_button("🎭 Teatro dos Grandes Atores", "/Gabaritos Teatro dos Grandes Atores.zip", use_container_width=True, help="Baixar gabaritos .PSD")
 
         st.markdown("---")
         st.link_button("← Voltar ao Sistema Teatrali", "https://teatrali.netlify.app/", use_container_width=True)
