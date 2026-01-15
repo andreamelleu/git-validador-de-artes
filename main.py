@@ -450,54 +450,15 @@ def main():
     
     # Step-by-step guide at the top
     st.markdown("""
-        <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-                    padding: 2rem; 
-                    border-radius: 10px; 
+        <div style="background: #2c2c34; 
+                    padding: 1.5rem 2rem; 
+                    border-radius: 8px; 
                     margin-bottom: 2rem;
-                    box-shadow: 0 4px 6px rgba(0,0,0,0.3);">
-            <h2 style="color: white; margin: 0 0 1.5rem 0; text-align: center;">
-                🎨 Olá, produtor Teatrali!
-            </h2>
-            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
-                <div style="background: rgba(255,255,255,0.15); 
-                            padding: 1.5rem; 
-                            border-radius: 8px;
-                            backdrop-filter: blur(10px);
-                            border: 1px solid rgba(255,255,255,0.2);">
-                    <h3 style="color: white; margin: 0 0 0.5rem 0;">
-                        📋 Passo 1
-                    </h3>
-                    <p style="color: rgba(255,255,255,0.9); margin: 0; line-height: 1.6;">
-                        Após criar suas artes conforme o checklist, suba e veja os avisos do sistema: <strong>em vermelho delete</strong>.
-                    </p>
-                </div>
-                <div style="background: rgba(255,255,255,0.15); 
-                            padding: 1.5rem; 
-                            border-radius: 8px;
-                            backdrop-filter: blur(10px);
-                            border: 1px solid rgba(255,255,255,0.2);">
-                    <h3 style="color: white; margin: 0 0 0.5rem 0;">
-                        ✅ Passo 2
-                    </h3>
-                    <p style="color: rgba(255,255,255,0.9); margin: 0; line-height: 1.6;">
-                        Valide o formato das suas artes, <strong>até finalizar todas elas</strong>.
-                    </p>
-                </div>
-                <div style="background: rgba(255,255,255,0.15); 
-                            padding: 1.5rem; 
-                            border-radius: 8px;
-                            backdrop-filter: blur(10px);
-                            border: 1px solid rgba(255,255,255,0.2);">
-                    <h3 style="color: white; margin: 0 0 0.5rem 0;">
-                        📥 Passo 3
-                    </h3>
-                    <p style="color: rgba(255,255,255,0.9); margin: 0; line-height: 1.6;">
-                        <strong>Baixe o relatório</strong> e suba tudo no drive da sua atração.
-                    </p>
-                </div>
-            </div>
-            <p style="color: white; text-align: center; margin: 1.5rem 0 0 0; font-size: 0.95rem;">
-                💬 Qualquer dúvida, fale com o Procópio e solicite o que precisar!
+                    border-left: 4px solid #667eea;">
+            <p style="color: #ffffff; margin: 0; font-size: 1.1rem; line-height: 1.8;">
+                <strong>📋 Passo 1:</strong> Após criar suas artes conforme o checklist, suba e veja os avisos do sistema: <span style="color: #ff4b4b;">em vermelho delete</span>. 
+                <strong style="margin-left: 1.5rem;">✅ Passo 2:</strong> Valide o formato das suas artes, até finalizar todas elas. 
+                <strong style="margin-left: 1.5rem;">📥 Passo 3:</strong> Baixe o relatório e suba tudo no drive da sua atração.
             </p>
         </div>
     """, unsafe_allow_html=True)
