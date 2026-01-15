@@ -355,8 +355,8 @@ def renderizar_area_visualizacao(regra: Dict[str, Any], arquivos: list) -> None:
 
     # Modo Inteligente
     if regra.get("is_smart_mode"):
-        st.markdown("""### 🔍 Modo de Validação Automática""")
-        st.markdown('<div style="background-color: #dc3545; color: #ffffff; padding: 15px; border-radius: 8px; font-size: 1.1em; margin-bottom: 20px; font-weight: 500;">O sistema identificará automaticamente o formato de cada arquivo enviado e verificará as regras correspondentes.</div>', unsafe_allow_html=True)
+        st.markdown("### 🔍 Modo de Validação Automática")
+        st.markdown('<div style="font-size: 1.2em; margin-bottom: 20px; color: #e0e0e0;">O sistema identificará automaticamente o formato de cada arquivo enviado e verificará as regras correspondentes.</div>', unsafe_allow_html=True)
         
         if arquivos_visiveis:
             st.subheader(f"Artes Carregadas ({len(arquivos_visiveis)})")
