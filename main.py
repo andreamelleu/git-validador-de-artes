@@ -130,7 +130,6 @@ def aplicar_estilos_customizados():
             
             /* Hide Sidebar Toggle (arrows) and Toolbar */
             /* RESTORE Sidebar Toggle (arrows) so user can re-open */
-            /* RESTORE Sidebar Toggle (arrows) so user can re-open */
             [data-testid="collapsedControl"] {
                 display: block !important;
                 color: #ffffff !important;
@@ -138,10 +137,26 @@ def aplicar_estilos_customizados():
                 top: 1rem !important;
                 left: 1rem !important;
                 z-index: 1000000 !important; /* On top of everything */
+                background-color: #333333 !important; /* Add background to make it visible against any bg */
+                border-radius: 50% !important;
+                padding: 0.5rem !important;
+                width: 2.5rem !important;
+                height: 2.5rem !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.5) !important;
+                transition: background-color 0.3s !important;
             }
+            [data-testid="collapsedControl"]:hover {
+                background-color: #555555 !important;
+            }
+            
             /* Ensure the icon inside is visible against dark background */
             [data-testid="collapsedControl"] svg {
                 fill: #ffffff !important;
+                width: 1.2rem !important;
+                height: 1.2rem !important;
             }
             [data-testid="stToolbar"] {
                 display: none !important;
