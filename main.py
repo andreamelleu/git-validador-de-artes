@@ -347,8 +347,8 @@ def aplicar_estilos_customizados():
                 border: 1px solid #cccccc !important;
                 border-radius: 5px !important;
                 height: auto !important;
-                padding: 10px 20px !important;
-                min-width: 120px !important;
+                padding: 12px 20px !important; /* Larger padding like Link Button */
+                width: 100% !important; /* Full width like Link Button */
                 margin: 0 auto !important;
                 display: block !important;
             }
@@ -361,16 +361,28 @@ def aplicar_estilos_customizados():
                 top: 50%;
                 transform: translate(-50%, -50%);
                 font-size: 16px !important; /* Restore visible font size */
-                font-weight: bold !important;
+                font-weight: normal !important; /* Match other buttons weight */
                 visibility: visible !important;
                 display: block !important;
                 white-space: nowrap !important;
             }
 
-            /* CENTER THE BUTTON in the white box */
+            /* CENTER THE BUTTON in the white box and Clean Dropzone */
             [data-testid="stFileUploaderDropzone"] > div {
                 justify-content: center !important;
                 text-align: center !important;
+                padding: 0 !important; /* Remove padding so button fills it */
+            }
+            /* Make the dropzone transparent so only the button is seen as the "box" if desired, 
+               OR keep it white but make button fill it. 
+               User said: "igual ao botão Fale com o procópio". 
+               The Fale button is standalone. The uploader has a dropzone. 
+               Let's make the Dropzone blend in or disappear so the button stands out.
+            */
+            [data-testid="stFileUploaderDropzone"] {
+                border: none !important; /* Remove dashed border of dropzone */
+                background-color: transparent !important; /* Transparent bg */
+                padding: 0 !important;
             }
 
             /* FORCE BLACK TEXT ON WHITE BUTTONS IN SIDEBAR */
