@@ -338,27 +338,33 @@ def aplicar_estilos_customizados():
             /* REMOVED injected text "Arraste seus arquivos..." as requested */
             
             /* CHANGE BUTTON TEXT: "Browse files" -> "Subir Arquivos" */
-            /* CHANGE BUTTON TEXT: "Browse files" -> "Subir Arquivos" */
+            /* CHANGE BUTTON TEXT: "Browse files" -> "Upload" */
             [data-testid="stFileUploader"] button[kind="secondary"] {
                 position: relative;
-                color: transparent !important; /* Hide original text color */
-                font-size: 0 !important; /* Hide original size/layout */
-                background-color: #ffffff !important; /* Ensure white bg */
-                min-height: 45px !important; /* Ensure enough height for new text */
+                color: transparent !important; /* Hide original text */
+                background-color: #ffffff !important; /* White button */
+                border: 1px solid #cccccc !important; /* Solid border */
+                border-radius: 5px !important;
+                height: auto !important;
+                padding: 10px 20px !important;
+                min-width: 120px !important; /* Ensure it looks "whole" */
+                margin: 0 auto !important; /* Center if possible */
+                display: block !important;
             }
             
             [data-testid="stFileUploader"] button[kind="secondary"]::after {
-                content: "⬆ Subir Arquivos"; /* Arrow + Text */
+                content: "⬆ Upload"; /* Arrow + Text per request */
                 position: absolute;
-                color: #000000 !important; /* Force BLACK text */
+                color: #000000 !important; /* Black Text */
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%, -50%);
-                font-size: 16px !important; /* Restore font size for new text */
-                font-weight: normal;
-                white-space: nowrap;
-                display: block;
-                visibility: visible;
+                font-size: 16px !important; 
+                font-weight: bold !important;
+                visibility: visible !important;
+                display: block !important;
+                width: 100% !important;
+                text-align: center !important;
             }
 
             /* FORCE BLACK TEXT ON WHITE BUTTONS IN SIDEBAR */
