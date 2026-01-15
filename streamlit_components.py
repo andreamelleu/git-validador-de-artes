@@ -259,9 +259,20 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
         if arquivos_validos:
             st.markdown(f"**Total de arquivos: {len(arquivos_validos)}**")
             with st.expander("📂 Ver lista completa", expanded=False):
-                unique_names = sorted({a.name for a in arquivos_validos})
-                for name in unique_names:
-                    st.markdown(f"📄 {name}")
+                for arquivo in arquivos_validos:
+                    col1, col2 = st.columns([5, 1])
+                    with col1:
+                        # Format file size
+                        size_kb = arquivo.size / 1024
+                        if size_kb < 1024:
+                            size_str = f"{size_kb:.1f}KB"
+                        else:
+                            size_str = f"{size_kb/1024:.1f}MB"
+                        st.markdown(f"📄 {arquivo.name} `{size_str}`")
+                    with col2:
+                        if st.button("✕", key=f"list_del_{arquivo.name}_{arquivo.size}"):
+                            st.session_state["removed_files"].add((arquivo.name, arquivo.size))
+                            st.rerun()
         st.markdown("---")
         
         # Botão para acessar Drive de Artes (recebe link via URL ou Processo ID)
