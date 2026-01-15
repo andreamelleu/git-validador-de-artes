@@ -434,29 +434,27 @@ def renderizar_area_visualizacao(regra: Dict[str, Any], arquivos: list) -> None:
                             st.markdown(f"**✅ {arquivo.name}**")
                             st.caption(f"Dimensões: {w}x{h}px")
                         else:
-                            # Compact error badge with inline trash icon
-                            col1, col2 = st.columns([4, 1])
-                            with col1:
-                                st.markdown(f"""
-                                <div style="
-                                    background-color: #ff4b4b; 
-                                    color: white; 
-                                    padding: 4px 8px; 
-                                    border-radius: 4px; 
-                                    margin-top: 5px; 
-                                    margin-bottom: 10px; 
-                                    font-size: 0.75em; 
-                                    line-height: 1.2;
-                                    text-align: left;
-                                    display: inline-block;">
-                                    <strong>⛔ BLOQUEADO</strong><br>
-                                    <span style="opacity:0.9; font-size:0.9em;">{w}x{h}px • Inválido</span>
-                                </div>
-                                """, unsafe_allow_html=True)
-                            with col2:
-                                if st.button("🗑️", key=f"del_{arquivo.name}_{idx}"):
-                                    st.session_state["removed_files"].add((arquivo.name, arquivo.size))
-                                    st.rerun()
+                            # Compact error badge
+                            st.markdown(f"""
+                            <div style="
+                                background-color: #ff4b4b; 
+                                color: white; 
+                                padding: 6px 10px; 
+                                border-radius: 4px; 
+                                margin-top: 5px; 
+                                margin-bottom: 10px; 
+                                font-size: 0.85em; 
+                                line-height: 1.3;
+                                text-align: center;">
+                                <strong>⛔ BLOQUEADO</strong><br>
+                                <span style="opacity:0.9; font-size:0.9em;">{w}x{h}px • Formato Inválido</span>
+                            </div>
+                            """, unsafe_allow_html=True)
+                        
+                        # Delete button
+                        if st.button("🗑️ Excluir", key=f"del_{arquivo.name}_{idx}", use_container_width=True):
+                            st.session_state["removed_files"].add((arquivo.name, arquivo.size))
+                            st.rerun()
 
         else:
             if len(st.session_state["removed_files"]) > 0 and len(arquivos) > 0:
