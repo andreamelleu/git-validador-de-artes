@@ -87,7 +87,8 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
 
         st.image(LOGO_MYWORK)
         st.header(MESSAGES["titulo_principal"])
-        st.markdown(MESSAGES["texto_intro"], unsafe_allow_html=True)
+        # Removed intro text to declutter sidebar - will be moved to main area as step-by-step
+        # st.markdown(MESSAGES["texto_intro"], unsafe_allow_html=True)
 
         teatros_disponiveis = list(TEATROS_CONFIG.keys())
         
