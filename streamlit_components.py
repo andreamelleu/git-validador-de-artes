@@ -87,7 +87,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
 
         st.image(LOGO_MYWORK)
         st.header(MESSAGES["titulo_principal"])
-        st.markdown("---")
+        st.markdown("**Produtor Teatrali, siga o passo a passo para o sucesso das suas artes!**")
 
         teatros_disponiveis = list(TEATROS_CONFIG.keys())
         
@@ -324,6 +324,10 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
                                 st.markdown(f"- {m}")
                          else:
                              st.success("✅ Tudo entregue!")
+        
+        # Footer
+        st.markdown("---")
+        st.caption("Desenvolvido por **mywork.digital** startup")
 
     # Garante que retorna uma lista, mesmo que vazia
     if arquivos_validos is None:
