@@ -35,6 +35,16 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
     with st.sidebar:
         st.markdown("""
             <style>
+                /* Garantir que todos os elementos interativos sejam clicáveis */
+                button, 
+                [data-testid="stButton"] button,
+                [data-testid="stFileUploader"] button,
+                [data-testid="stSelectbox"],
+                [data-testid="stLinkButton"] a {
+                    pointer-events: auto !important;
+                    cursor: pointer !important;
+                }
+                
                 [data-testid="stSidebar"] [data-testid="stImage"] {
                     margin-top: -40px;
                 }
@@ -81,6 +91,13 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
                     color: #FFFFFF !important;
                     border-color: #28a745 !important;
                     box-shadow: none !important;
+                }
+                
+                /* Badge BLOQUEADO - Fundo Vermelho e Texto Branco */
+                .bloqueado-badge,
+                .bloqueado-badge * {
+                    background-color: #dc3545 !important;
+                    color: #ffffff !important;
                 }
             </style>
         """, unsafe_allow_html=True)
@@ -187,55 +204,8 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
         if "uploader_key" not in st.session_state:
             st.session_state["uploader_key"] = 0
 
-        # Style the file uploader button
+        # Área de upload de arquivos
         st.markdown("**4️⃣ Suba suas artes:**")
-        st.markdown("""
-            <style>
-                /* Style the file uploader button to match our design */
-                [data-testid="stFileUploader"] section {
-                    padding: 0 !important;
-                }
-                
-                [data-testid="stFileUploader"] button {
-                    width: 100% !important;
-                    padding: 12px 20px !important;
-                    background-color: #ffffff !important;
-                    color: #000000 !important;
-                    border: 1px solid #cccccc !important;
-                    border-radius: 5px !important;
-                    font-size: 16px !important;
-                    font-weight: normal !important;
-                    transition: all 0.2s ease !important;
-                }
-                
-                [data-testid="stFileUploader"] button:hover {
-                    background-color: #000000 !important;
-                    color: #ffffff !important;
-                    border-color: #000000 !important;
-                }
-                
-                /* Hide the drag and drop text */
-                [data-testid="stFileUploader"] section > div > div > span {
-                    display: none !important;
-                }
-                
-                /* Hide the dropzone border */
-                [data-testid="stFileUploader"] section[data-testid="stFileUploaderDropzone"] {
-                    border: none !important;
-                    background: transparent !important;
-                    padding: 0 !important;
-                }
-                
-                /* Change button text */
-                [data-testid="stFileUploader"] button::before {
-                    content: "⬆ Upload";
-                }
-                
-                [data-testid="stFileUploader"] button span {
-                    display: none !important;
-                }
-            </style>
-        """, unsafe_allow_html=True)
         
         arquivos_carregados = st.file_uploader(
             MESSAGES["suba_arte"],
@@ -425,8 +395,8 @@ def renderizar_area_visualizacao(regra: Dict[str, Any], arquivos: list) -> None:
             # Ordena: Invalidos (False) primeiro, depois Válidos (True)
             arquivos_processados.sort(key=lambda x: x["is_valid"])
             
-            # --- RENDERIZAÇÃO EM GRID (UX Melhorada - 3 Colunas) ---
-            cols = st.columns(3)
+            # --- RENDERIZAÇÃO EM GRID (UX Melhorada - 4 Colunas) ---
+            cols = st.columns(4)
             
             for idx, item in enumerate(arquivos_processados):
                 arquivo = item["arquivo"]
@@ -434,7 +404,7 @@ def renderizar_area_visualizacao(regra: Dict[str, Any], arquivos: list) -> None:
                 w = item["width"]
                 h = item["height"]
                 
-                with cols[idx % 3]:
+                with cols[idx % 4]:
                     # Card Container styling wrapper (via CSS class if possible, but st.container is logical grouping)
                     with st.container(border=True): # Use Streamlit's native border container for better defining the card
                         # 1. Image Area
@@ -447,18 +417,19 @@ def renderizar_area_visualizacao(regra: Dict[str, Any], arquivos: list) -> None:
                         else:
                             # Compact error badge
                             st.markdown(f"""
-                            <div style="
-                                background-color: #ff4b4b; 
-                                color: white; 
-                                padding: 6px 10px; 
+                            <div class="bloqueado-badge" style="
+                                background-color: #dc3545 !important; 
+                                color: #ffffff !important; 
+                                padding: 8px 12px; 
                                 border-radius: 4px; 
                                 margin-top: 5px; 
                                 margin-bottom: 10px; 
-                                font-size: 0.85em; 
-                                line-height: 1.3;
-                                text-align: center;">
-                                <strong>⛔ BLOQUEADO</strong><br>
-                                <span style="opacity:0.9; font-size:0.9em;">{w}x{h}px • Formato Inválido</span>
+                                font-size: 0.9em; 
+                                line-height: 1.4;
+                                text-align: center;
+                                font-weight: bold;">
+                                ⛔ BLOQUEADO<br>
+                                <span style="opacity:0.95; font-size:0.85em; color: #ffffff !important;">{w}x{h}px • Formato Inválido</span>
                             </div>
                             """, unsafe_allow_html=True)
                         
