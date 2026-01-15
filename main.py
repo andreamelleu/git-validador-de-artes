@@ -451,93 +451,159 @@ def main():
     # Step-by-step guide at the top
     st.markdown("""
         <style>
-            .steps-container {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 1.5rem;
+            .stepper-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem 1rem;
                 margin-bottom: 2rem;
-            }
-            
-            .step-card {
                 background: #2c2c34;
                 border-radius: 10px;
-                padding: 1.5rem;
+            }
+            
+            .stepper-wrapper {
+                display: flex;
+                align-items: center;
+                gap: 0;
+                width: 100%;
+                max-width: 900px;
+            }
+            
+            .step {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                flex: 1;
                 position: relative;
-                overflow: hidden;
-                border-top: 4px solid;
-                transition: transform 0.2s ease;
             }
             
-            .step-card:hover {
-                transform: translateY(-5px);
-            }
-            
-            .step-card.step-1 { border-top-color: #28a745; }
-            .step-card.step-2 { border-top-color: #667eea; }
-            .step-card.step-3 { border-top-color: #ff4b4b; }
-            
-            .step-number {
-                font-size: 3rem;
+            .step-indicator {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: #3a3a44;
+                border: 3px solid #3a3a44;
+                color: rgba(255,255,255,0.5);
                 font-weight: bold;
-                color: rgba(255,255,255,0.1);
-                position: absolute;
-                top: -10px;
-                right: 15px;
-                line-height: 1;
+                font-size: 1.1rem;
+                position: relative;
+                z-index: 2;
+                transition: all 0.3s ease;
+            }
+            
+            .step.active .step-indicator {
+                background: #667eea;
+                border-color: #667eea;
+                color: white;
+                box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+            }
+            
+            .step.completed .step-indicator {
+                background: #28a745;
+                border-color: #28a745;
+                color: white;
+            }
+            
+            .step-content {
+                margin-top: 1rem;
+                text-align: center;
             }
             
             .step-title {
-                color: #ffffff;
-                font-size: 0.9rem;
+                color: rgba(255,255,255,0.5);
+                font-size: 0.75rem;
                 font-weight: 600;
-                margin-bottom: 0.5rem;
                 text-transform: uppercase;
-                letter-spacing: 1px;
+                letter-spacing: 0.5px;
+                margin-bottom: 0.25rem;
             }
             
-            .step-card.step-1 .step-title { color: #28a745; }
-            .step-card.step-2 .step-title { color: #667eea; }
-            .step-card.step-3 .step-title { color: #ff4b4b; }
+            .step.active .step-title {
+                color: #667eea;
+            }
             
-            .step-content {
-                color: rgba(255,255,255,0.85);
-                font-size: 0.95rem;
-                line-height: 1.6;
+            .step.completed .step-title {
+                color: #28a745;
+            }
+            
+            .step-description {
+                color: rgba(255,255,255,0.7);
+                font-size: 0.85rem;
+                line-height: 1.4;
+                max-width: 200px;
+            }
+            
+            .step.active .step-description {
+                color: rgba(255,255,255,0.9);
+            }
+            
+            .step-separator {
+                flex: 1;
+                height: 3px;
+                background: #3a3a44;
+                margin: 0 -1px;
                 position: relative;
+                top: -24px;
                 z-index: 1;
             }
             
-            .step-icon {
-                font-size: 2rem;
-                margin-bottom: 0.5rem;
+            .step.completed + .step-separator {
+                background: #28a745;
+            }
+            
+            .check-icon {
+                display: none;
+            }
+            
+            .step.completed .check-icon {
+                display: block;
+            }
+            
+            .step.completed .step-number {
+                display: none;
             }
         </style>
         
-        <div class="steps-container">
-            <div class="step-card step-1">
-                <div class="step-number">01</div>
-                <div class="step-icon">📋</div>
-                <div class="step-title">Passo 1: Upload</div>
-                <div class="step-content">
-                    Após criar suas artes conforme o checklist, suba e veja os avisos do sistema: <strong style="color: #ff4b4b;">em vermelho delete</strong>.
+        <div class="stepper-container">
+            <div class="stepper-wrapper">
+                <div class="step completed">
+                    <div class="step-indicator">
+                        <span class="step-number">1</span>
+                        <span class="check-icon">✓</span>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">Upload</div>
+                        <div class="step-description">Suba suas artes e veja os avisos em vermelho</div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="step-card step-2">
-                <div class="step-number">02</div>
-                <div class="step-icon">✅</div>
-                <div class="step-title">Passo 2: Validação</div>
-                <div class="step-content">
-                    Valide o formato das suas artes, <strong>até finalizar todas elas</strong>.
+                
+                <div class="step-separator"></div>
+                
+                <div class="step active">
+                    <div class="step-indicator">
+                        <span class="step-number">2</span>
+                        <span class="check-icon">✓</span>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">Validação</div>
+                        <div class="step-description">Valide o formato até finalizar todas</div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="step-card step-3">
-                <div class="step-number">03</div>
-                <div class="step-icon">📥</div>
-                <div class="step-title">Passo 3: Finalização</div>
-                <div class="step-content">
-                    <strong>Baixe o relatório</strong> e suba tudo no drive da sua atração.
+                
+                <div class="step-separator"></div>
+                
+                <div class="step">
+                    <div class="step-indicator">
+                        <span class="step-number">3</span>
+                        <span class="check-icon">✓</span>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-title">Finalização</div>
+                        <div class="step-description">Baixe o relatório e suba no Drive</div>
+                    </div>
                 </div>
             </div>
         </div>
