@@ -191,9 +191,13 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
         st.markdown("**4️⃣ Suba suas artes:**")
         st.markdown("""
             <style>
-                /* Hide the default file uploader completely */
+                /* Hide the default file uploader visually but keep it in DOM */
                 [data-testid="stFileUploader"] {
-                    display: none !important;
+                    position: absolute !important;
+                    visibility: hidden !important;
+                    height: 0 !important;
+                    width: 0 !important;
+                    overflow: hidden !important;
                 }
                 
                 /* Custom upload button */
@@ -220,7 +224,10 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
                 }
             </style>
             
-            <button class="custom-upload-btn" onclick="document.querySelector('[data-testid=stFileUploader] input[type=file]').click()">
+            <button class="custom-upload-btn" onclick="
+                const fileInput = document.querySelector('input[type=file]');
+                if (fileInput) fileInput.click();
+            ">
                 ⬆ Upload
             </button>
         """, unsafe_allow_html=True)
