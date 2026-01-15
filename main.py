@@ -337,51 +337,56 @@ def aplicar_estilos_customizados():
             
             /* REMOVED injected text "Arraste seus arquivos..." as requested */
             
-            /* CHANGE BUTTON TEXT: "Browse files" -> "Subir Arquivos" */
-            /* FIX: Specific selector to OVERRIDE the generic sidebar button black text rule */
+            /* FILE UPLOADER BUTTON - Make it look like other sidebar buttons */
+            /* Hide ALL children of the button to prevent text overlap */
+            [data-testid="stSidebar"] [data-testid="stFileUploader"] button[kind="secondary"] * {
+                font-size: 0 !important;
+                color: transparent !important;
+                visibility: hidden !important;
+            }
+            
+            /* Style the button itself */
             [data-testid="stSidebar"] [data-testid="stFileUploader"] button[kind="secondary"] {
-                position: relative;
-                color: transparent !important; /* Hide original "Browse files" text */
-                font-size: 0 !important; /* CRITICAL: Shrink original text to 0 to prevent overlap */
+                position: relative !important;
                 background-color: #ffffff !important;
                 border: 1px solid #cccccc !important;
                 border-radius: 5px !important;
+                padding: 12px 20px !important;
+                width: 100% !important;
                 height: auto !important;
-                padding: 12px 20px !important; /* Larger padding like Link Button */
-                width: 100% !important; /* Full width like Link Button */
-                margin: 0 auto !important;
+                min-height: 45px !important;
                 display: block !important;
+                margin: 0 !important;
+                text-align: center !important;
+                font-size: 0 !important; /* Hide original text */
+                color: transparent !important;
             }
             
+            /* Add the new text with ::after */
             [data-testid="stSidebar"] [data-testid="stFileUploader"] button[kind="secondary"]::after {
-                content: "Suba seus arquivos";
-                position: absolute;
-                color: #000000 !important; /* Visible Black Text */
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                font-size: 16px !important; /* Restore visible font size */
-                font-weight: normal !important; /* Match other buttons weight */
+                content: "Suba seus arquivos" !important;
+                position: absolute !important;
+                left: 50% !important;
+                top: 50% !important;
+                transform: translate(-50%, -50%) !important;
+                color: #000000 !important;
+                font-size: 16px !important;
+                font-weight: normal !important;
                 visibility: visible !important;
-                display: block !important;
                 white-space: nowrap !important;
+                display: block !important;
             }
 
-            /* CENTER THE BUTTON in the white box and Clean Dropzone */
-            [data-testid="stFileUploaderDropzone"] > div {
+            /* Clean up the dropzone container */
+            [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] {
+                border: none !important;
+                background-color: transparent !important;
+                padding: 0 !important;
+            }
+            
+            [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] > div {
                 justify-content: center !important;
                 text-align: center !important;
-                padding: 0 !important; /* Remove padding so button fills it */
-            }
-            /* Make the dropzone transparent so only the button is seen as the "box" if desired, 
-               OR keep it white but make button fill it. 
-               User said: "igual ao botão Fale com o procópio". 
-               The Fale button is standalone. The uploader has a dropzone. 
-               Let's make the Dropzone blend in or disappear so the button stands out.
-            */
-            [data-testid="stFileUploaderDropzone"] {
-                border: none !important; /* Remove dashed border of dropzone */
-                background-color: transparent !important; /* Transparent bg */
                 padding: 0 !important;
             }
 
