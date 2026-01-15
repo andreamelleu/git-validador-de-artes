@@ -436,23 +436,24 @@ def renderizar_area_visualizacao(regra: Dict[str, Any], arquivos: list) -> None:
                         else:
                             # Cleaner, compact error badge
                             st.markdown(f"""
-                            <div style="
+                            <div style=\"
                                 background-color: #ff4b4b; 
                                 color: white; 
-                                padding: 8px; 
+                                padding: 4px 8px; 
                                 border-radius: 4px; 
                                 margin-top: 5px; 
                                 margin-bottom: 10px; 
-                                font-size: 0.9em; 
+                                font-size: 0.75em; 
                                 line-height: 1.2;
-                                text-align: center;">
+                                text-align: left;
+                                display: inline-block;\">
                                 <strong>⛔ BLOQUEADO</strong><br>
-                                <span style="opacity:0.9; font-size:0.85em;">{w}x{h}px • Inválido</span>
+                                <span style=\"opacity:0.9; font-size:0.9em;\">{w}x{h}px • Inválido</span>
                             </div>
                             """, unsafe_allow_html=True)
                         
                         # 3. Action Area
-                        if st.button("🗑️ Remover", key=f"del_{arquivo.name}_{idx}", use_container_width=True):
+                        if st.button("✕", key=f"del_{arquivo.name}_{idx}", use_container_width=True):
                             st.session_state["removed_files"].add((arquivo.name, arquivo.size))
                             st.rerun()
 
