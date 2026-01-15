@@ -298,7 +298,7 @@ def aplicar_estilos_customizados():
                 display: none !important;
             }
             
-            /* Inject new text */
+            /* Inject new text - DARK COLOR because the box is white */
             [data-testid="stFileUploader"] section[data-testid="stFileUploaderDropzone"] > div > div::before {
                 content: "Arraste seus arquivos do Drive ou Computador aqui";
                 visibility: visible;
@@ -306,14 +306,23 @@ def aplicar_estilos_customizados():
                 font-weight: bold;
                 font-size: 1.1em;
                 margin-bottom: 4px;
-                color: #ffffff !important;
+                color: #333333 !important; /* Fixed: Dark text for white background */
             }
             
-            /* Ensure the limit text (Small) is visible and colored */
+            /* Ensure the limit text (Small) inside the box is also visible/dark */
             [data-testid="stFileUploader"] section[data-testid="stFileUploaderDropzone"] small {
-                color: #aaaaaa !important;
+                color: #555555 !important;
             }
 
+            /* Fix Caption text in Sidebar (below uploader) - Must be WHITE and LARGER */
+            [data-testid="stSidebar"] [data-testid="stCaption"],
+            [data-testid="stSidebar"] div[data-testid="caption"],
+            [data-testid="stSidebar"] .stCaption {
+                color: #ffffff !important;
+                font-size: 1.1em !important;
+                opacity: 1 !important;
+                line-height: 1.4 !important;
+            }
 
         </style>
     """
