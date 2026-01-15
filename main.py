@@ -81,9 +81,15 @@ def aplicar_estilos_customizados():
                 background-color: #2c2c34 !important;
             }
 
-            /* Remove top white bar and header */
+            /* Remove top white bar and header - BUT KEEP TOGGLE BUTTON ACCESSIBLE */
             header[data-testid="stHeader"] {
-                display: none !important;
+                background: transparent !important;
+                /* display: none !important; <--- REMOVED so toggle button can live */
+            }
+            
+            /* Hide the decoration line/gradient at top if it exists */
+            header[data-testid="stHeader"] > div {
+                 background: transparent !important;
             }
             
             /* Remove standard padding to use full 100% space */
