@@ -338,22 +338,27 @@ def aplicar_estilos_customizados():
             /* REMOVED injected text "Arraste seus arquivos..." as requested */
             
             /* CHANGE BUTTON TEXT: "Browse files" -> "Subir Arquivos" */
+            /* CHANGE BUTTON TEXT: "Browse files" -> "Subir Arquivos" */
             [data-testid="stFileUploader"] button[kind="secondary"] {
                 position: relative;
-                color: transparent !important; /* Hide original text */
+                color: transparent !important; /* Hide original text color */
+                font-size: 0 !important; /* Hide original size/layout */
                 background-color: #ffffff !important; /* Ensure white bg */
+                min-height: 45px !important; /* Ensure enough height for new text */
             }
             
             [data-testid="stFileUploader"] button[kind="secondary"]::after {
-                content: "Subir Arquivos";
+                content: "⬆ Subir Arquivos"; /* Arrow + Text */
                 position: absolute;
                 color: #000000 !important; /* Force BLACK text */
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%, -50%);
-                font-size: 16px; 
+                font-size: 16px !important; /* Restore font size for new text */
                 font-weight: normal;
                 white-space: nowrap;
+                display: block;
+                visibility: visible;
             }
 
             /* FORCE BLACK TEXT ON WHITE BUTTONS IN SIDEBAR */
