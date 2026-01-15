@@ -188,6 +188,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
             st.session_state["uploader_key"] = 0
 
         # Custom upload button that matches other buttons
+        st.markdown("**4️⃣ Suba suas artes:**")
         st.markdown("""
             <style>
                 /* Hide the default file uploader completely */
@@ -220,7 +221,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
             </style>
             
             <button class="custom-upload-btn" onclick="document.querySelector('[data-testid=stFileUploader] input[type=file]').click()">
-                4️⃣ Suba seus arquivos
+                ⬆ Upload
             </button>
         """, unsafe_allow_html=True)
         
@@ -286,7 +287,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
                 use_container_width=True
             )
 
-        botao_validar_clicado = st.button("6️⃣ " + MESSAGES["validar_arte"], use_container_width=True, type="primary")
+        botao_validar_clicado = st.button(MESSAGES["validar_arte"], use_container_width=True, type="primary")
         
         # Se resetar a seleção, limpa também a lixeira para evitar inconsistências futuras
         if arquivos_carregados and st.button("5️⃣ 🗑️ Limpar Seleção", use_container_width=True):
