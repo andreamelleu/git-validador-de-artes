@@ -85,7 +85,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
             </style>
         """, unsafe_allow_html=True)
 
-        st.image(LOGO_MYWORK)
+        st.image(LOGO_MYWORK, width=200)
         st.header(MESSAGES["titulo_principal"])
         st.markdown("**Produtor Teatrali, siga o passo a passo para o sucesso das suas artes!**")
 
