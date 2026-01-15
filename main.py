@@ -304,20 +304,29 @@ def aplicar_estilos_customizados():
             }
 
             /* HACK: Translate "Drag and drop files here" to Portuguese */
-            /* Hide the original text span */
+            /* Hide the original text span ("Drag and drop files here") */
             [data-testid="stFileUploader"] section[data-testid="stFileUploaderDropzone"] > div > div > span {
                 display: none !important;
             }
             
-            /* Inject new text - DARK COLOR because the box is white */
-            [data-testid="stFileUploader"] section[data-testid="stFileUploaderDropzone"] > div > div::before {
-                content: "Arraste seus arquivos do Drive ou Computador aqui";
-                visibility: visible;
-                display: block;
-                font-weight: bold;
-                font-size: 1.1em;
-                margin-bottom: 4px;
-                color: #333333 !important; /* Fixed: Dark text for white background */
+            /* REMOVED injected text "Arraste seus arquivos..." as requested */
+            
+            /* CHANGE BUTTON TEXT: "Browse files" -> "Subir Arquivos" */
+            [data-testid="stFileUploader"] button[kind="secondary"] {
+                position: relative;
+                color: transparent !important; /* Hide original text */
+            }
+            
+            [data-testid="stFileUploader"] button[kind="secondary"]::after {
+                content: "Subir Arquivos";
+                position: absolute;
+                color: #333333 !important; /* Restore text color (Dark) */
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 16px; 
+                font-weight: normal;
+                white-space: nowrap;
             }
             
             /* Ensure the limit text (Small) inside the box is also visible/dark */
