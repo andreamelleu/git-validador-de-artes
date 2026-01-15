@@ -244,10 +244,9 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
         # Exibe o botão se encontrou algum link
         if link_final:
             st.link_button(
-                "📁 Acessar Drive de Artes", 
+                "📂 Abre a pasta do Drive com todas as artes deste espetáculo", 
                 link_final, 
-                use_container_width=True,
-                help="Abre a pasta do Drive com todas as artes deste espetáculo"
+                use_container_width=True
             )
 
         botao_validar_clicado = st.button(MESSAGES["validar_arte"], use_container_width=True, type="primary")
