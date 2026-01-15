@@ -354,7 +354,7 @@ def aplicar_estilos_customizados():
             }
             
             [data-testid="stSidebar"] [data-testid="stFileUploader"] button[kind="secondary"]::after {
-                content: "⬆ Upload";
+                content: "Suba seus arquivos";
                 position: absolute;
                 color: #000000 !important; /* Visible Black Text */
                 left: 50%;
@@ -365,6 +365,12 @@ def aplicar_estilos_customizados():
                 visibility: visible !important;
                 display: block !important;
                 white-space: nowrap !important;
+            }
+
+            /* CENTER THE BUTTON in the white box */
+            [data-testid="stFileUploaderDropzone"] > div {
+                justify-content: center !important;
+                text-align: center !important;
             }
 
             /* FORCE BLACK TEXT ON WHITE BUTTONS IN SIDEBAR */
