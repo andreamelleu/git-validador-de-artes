@@ -18,9 +18,15 @@ def aplicar_estilos_customizados():
                 width: 160px !important;
             }
 
-            [data-testid="stSidebar"] p:last-of-type {
-                font-size: 0.8em !important;
-                color: #A0A0A0 !important;
+            [data-testid="stSidebar"] p, [data-testid="stSidebar"] span {
+                font-size: 1.1rem !important;
+                color: #ffffff !important;
+            }
+
+            [data-testid="stSidebar"] .stMarkdown p {
+                font-size: 1.1rem !important;
+                line-height: 1.5 !important;
+                color: #ffffff !important;
             }
 
             [data-testid="stSidebar"] .stLinkButton a {
