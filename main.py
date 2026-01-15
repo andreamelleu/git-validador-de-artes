@@ -336,59 +336,7 @@ def aplicar_estilos_customizados():
             }
             
             /* REMOVED injected text "Arraste seus arquivos..." as requested */
-            
-            /* FILE UPLOADER BUTTON - Make it look like other sidebar buttons */
-            /* Hide ALL children of the button to prevent text overlap */
-            [data-testid="stSidebar"] [data-testid="stFileUploader"] button[kind="secondary"] * {
-                font-size: 0 !important;
-                color: transparent !important;
-                visibility: hidden !important;
-            }
-            
-            /* Style the button itself */
-            [data-testid="stSidebar"] [data-testid="stFileUploader"] button[kind="secondary"] {
-                position: relative !important;
-                background-color: #ffffff !important;
-                border: 1px solid #cccccc !important;
-                border-radius: 5px !important;
-                padding: 12px 20px !important;
-                width: 100% !important;
-                height: auto !important;
-                min-height: 45px !important;
-                display: block !important;
-                margin: 0 !important;
-                text-align: center !important;
-                font-size: 0 !important; /* Hide original text */
-                color: transparent !important;
-            }
-            
-            /* Add the new text with ::after */
-            [data-testid="stSidebar"] [data-testid="stFileUploader"] button[kind="secondary"]::after {
-                content: "Suba seus arquivos" !important;
-                position: absolute !important;
-                left: 50% !important;
-                top: 50% !important;
-                transform: translate(-50%, -50%) !important;
-                color: #000000 !important;
-                font-size: 16px !important;
-                font-weight: normal !important;
-                visibility: visible !important;
-                white-space: nowrap !important;
-                display: block !important;
-            }
-
-            /* Clean up the dropzone container */
-            [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] {
-                border: none !important;
-                background-color: transparent !important;
-                padding: 0 !important;
-            }
-            
-            [data-testid="stSidebar"] [data-testid="stFileUploaderDropzone"] > div {
-                justify-content: center !important;
-                text-align: center !important;
-                padding: 0 !important;
-            }
+            /* File uploader is now handled by custom HTML button in streamlit_components.py */
 
             /* FORCE BLACK TEXT ON WHITE BUTTONS IN SIDEBAR */
             [data-testid="stSidebar"] [data-testid="stLinkButton"] a,

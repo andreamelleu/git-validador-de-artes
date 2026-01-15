@@ -188,6 +188,43 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
         if "uploader_key" not in st.session_state:
             st.session_state["uploader_key"] = 0
 
+        # Custom upload button that matches other buttons
+        st.markdown("""
+            <style>
+                /* Hide the default file uploader completely */
+                [data-testid="stFileUploader"] {
+                    display: none !important;
+                }
+                
+                /* Custom upload button */
+                .custom-upload-btn {
+                    display: block;
+                    width: 100%;
+                    padding: 12px 20px;
+                    background-color: #ffffff;
+                    color: #000000;
+                    border: 1px solid #cccccc;
+                    border-radius: 5px;
+                    text-align: center;
+                    font-size: 16px;
+                    font-weight: normal;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    margin-bottom: 1rem;
+                }
+                
+                .custom-upload-btn:hover {
+                    background-color: #000000;
+                    color: #ffffff;
+                    border-color: #000000;
+                }
+            </style>
+            
+            <button class="custom-upload-btn" onclick="document.querySelector('[data-testid=stFileUploader] input[type=file]').click()">
+                Suba seus arquivos
+            </button>
+        """, unsafe_allow_html=True)
+        
         arquivos_carregados = st.file_uploader(
             MESSAGES["suba_arte"],
             type=TIPOS_ARQUIVO_PERMITIDOS,
