@@ -187,49 +187,54 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
         if "uploader_key" not in st.session_state:
             st.session_state["uploader_key"] = 0
 
-        # Custom upload button that matches other buttons
+        # Style the file uploader button
         st.markdown("**4️⃣ Suba suas artes:**")
         st.markdown("""
             <style>
-                /* Hide the default file uploader visually but keep it in DOM */
-                [data-testid="stFileUploader"] {
-                    position: absolute !important;
-                    visibility: hidden !important;
-                    height: 0 !important;
-                    width: 0 !important;
-                    overflow: hidden !important;
+                /* Style the file uploader button to match our design */
+                [data-testid="stFileUploader"] section {
+                    padding: 0 !important;
                 }
                 
-                /* Custom upload button */
-                .custom-upload-btn {
-                    display: block;
-                    width: 100%;
-                    padding: 12px 20px;
-                    background-color: #ffffff;
-                    color: #000000;
-                    border: 1px solid #cccccc;
-                    border-radius: 5px;
-                    text-align: center;
-                    font-size: 16px;
-                    font-weight: normal;
-                    cursor: pointer;
-                    transition: all 0.2s ease;
-                    margin-bottom: 1rem;
+                [data-testid="stFileUploader"] button {
+                    width: 100% !important;
+                    padding: 12px 20px !important;
+                    background-color: #ffffff !important;
+                    color: #000000 !important;
+                    border: 1px solid #cccccc !important;
+                    border-radius: 5px !important;
+                    font-size: 16px !important;
+                    font-weight: normal !important;
+                    transition: all 0.2s ease !important;
                 }
                 
-                .custom-upload-btn:hover {
-                    background-color: #000000;
-                    color: #ffffff;
-                    border-color: #000000;
+                [data-testid="stFileUploader"] button:hover {
+                    background-color: #000000 !important;
+                    color: #ffffff !important;
+                    border-color: #000000 !important;
+                }
+                
+                /* Hide the drag and drop text */
+                [data-testid="stFileUploader"] section > div > div > span {
+                    display: none !important;
+                }
+                
+                /* Hide the dropzone border */
+                [data-testid="stFileUploader"] section[data-testid="stFileUploaderDropzone"] {
+                    border: none !important;
+                    background: transparent !important;
+                    padding: 0 !important;
+                }
+                
+                /* Change button text */
+                [data-testid="stFileUploader"] button::before {
+                    content: "⬆ Upload";
+                }
+                
+                [data-testid="stFileUploader"] button span {
+                    display: none !important;
                 }
             </style>
-            
-            <button class="custom-upload-btn" onclick="
-                const fileInput = document.querySelector('input[type=file]');
-                if (fileInput) fileInput.click();
-            ">
-                ⬆ Upload
-            </button>
         """, unsafe_allow_html=True)
         
         arquivos_carregados = st.file_uploader(
