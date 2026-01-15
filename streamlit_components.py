@@ -288,7 +288,6 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
         botao_validar_clicado = st.button(MESSAGES["validar_arte"], use_container_width=True, type="primary")
         
         # Exibe o botão se encontrou algum link
-        st.markdown("---")
         st.markdown("**🛠️ Ferramentas de Apoio:**")
         
         if link_final:
