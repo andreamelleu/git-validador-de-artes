@@ -356,8 +356,8 @@ def renderizar_area_visualizacao(regra: Dict[str, Any], arquivos: list) -> None:
             # Ordena: Invalidos (False) primeiro, depois Válidos (True)
             arquivos_processados.sort(key=lambda x: x["is_valid"])
             
-            # --- RENDERIZAÇÃO EM GRID ---
-            cols = st.columns(4)
+            # --- RENDERIZAÇÃO EM GRID (UX Melhorada - 3 Colunas) ---
+            cols = st.columns(3)
             
             for idx, item in enumerate(arquivos_processados):
                 arquivo = item["arquivo"]
@@ -365,22 +365,36 @@ def renderizar_area_visualizacao(regra: Dict[str, Any], arquivos: list) -> None:
                 w = item["width"]
                 h = item["height"]
                 
-                with cols[idx % 4]:
-                    # Container para o card
-                    with st.container():
+                with cols[idx % 3]:
+                    # Card Container styling wrapper (via CSS class if possible, but st.container is logical grouping)
+                    with st.container(border=True): # Use Streamlit's native border container for better defining the card
+                        # 1. Image Area
+                        st.image(arquivo, use_container_width=True, channels="RGB")
+                        
+                        # 2. Status Area
                         if is_valid:
-                            st.image(arquivo, caption=arquivo.name, use_container_width=True)
+                            st.markdown(f"**✅ {arquivo.name}**")
+                            st.caption(f"Dimensões: {w}x{h}px")
                         else:
-                            # Visualização de Bloqueado
-                            st.image(arquivo, use_container_width=True, channels="BGR")
+                            # Cleaner, compact error badge
                             st.markdown(f"""
-                            <div style="background-color:#ff4b4b; color:white; padding:5px; border-radius:5px; text-align:center; font-weight:bold; margin-top:-10px; margin-bottom:10px;">
-                                ⛔ BLOQUEADO<br><span style="font-size:0.8em; font-weight:normal;">{w}x{h}px - Formato Inválido</span>
+                            <div style="
+                                background-color: #ff4b4b; 
+                                color: white; 
+                                padding: 8px; 
+                                border-radius: 4px; 
+                                margin-top: 5px; 
+                                margin-bottom: 10px; 
+                                font-size: 0.9em; 
+                                line-height: 1.2;
+                                text-align: center;">
+                                <strong>⛔ BLOQUEADO</strong><br>
+                                <span style="opacity:0.9; font-size:0.85em;">{w}x{h}px • Inválido</span>
                             </div>
                             """, unsafe_allow_html=True)
                         
-                        # Botão de Lixeira
-                        if st.button("🗑️ Excluir", key=f"del_{arquivo.name}_{idx}"):
+                        # 3. Action Area
+                        if st.button("🗑️ Remover", key=f"del_{arquivo.name}_{idx}", use_container_width=True):
                             st.session_state["removed_files"].add((arquivo.name, arquivo.size))
                             st.rerun()
 
