@@ -355,8 +355,8 @@ def renderizar_area_visualizacao(regra: Dict[str, Any], arquivos: list) -> None:
 
     # Modo Inteligente
     if regra.get("is_smart_mode"):
-        st.markdown("### 🔍 Modo de Validação Automática")
-        st.markdown('<div style="font-size: 1.2em; margin-bottom: 20px; color: #e0e0e0;">O sistema identificará automaticamente o formato de cada arquivo enviado e verificará as regras correspondentes.</div>', unsafe_allow_html=True)
+        st.markdown("""### 🔍 Modo de Validação Automática""")
+        st.markdown('<div style="background-color: #dc3545; color: #ffffff; padding: 15px; border-radius: 8px; font-size: 1.1em; margin-bottom: 20px; font-weight: 500;">O sistema identificará automaticamente o formato de cada arquivo enviado e verificará as regras correspondentes.</div>', unsafe_allow_html=True)
         
         if arquivos_visiveis:
             st.subheader(f"Artes Carregadas ({len(arquivos_visiveis)})")
@@ -470,7 +470,7 @@ def renderizar_resultados(validar_button: bool, arquivos: list, regra: Dict[str,
     if not validar_button:
         return
     if not arquivos:
-        st.warning(MESSAGES["upload_antes_validar"])
+        st.markdown(f'<div style="background-color: #dc3545; color: white; padding: 15px; border-radius: 8px; font-size: 1.2em; font-weight: bold; margin-bottom: 15px;">{MESSAGES["upload_antes_validar"]}</div>', unsafe_allow_html=True)
         return
     if not regra:
         st.error("Selecione um gabarito antes de validar.")
