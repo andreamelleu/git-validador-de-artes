@@ -87,8 +87,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
 
         st.image(LOGO_MYWORK)
         st.header(MESSAGES["titulo_principal"])
-        # Removed intro text to declutter sidebar - will be moved to main area as step-by-step
-        # st.markdown(MESSAGES["texto_intro"], unsafe_allow_html=True)
+        st.markdown("---")
 
         teatros_disponiveis = list(TEATROS_CONFIG.keys())
         
@@ -104,7 +103,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
              idx_teatro = teatros_disponiveis.index(teatro_url)
              
         teatro_selecionado = st.selectbox(
-            MESSAGES["selecione_teatro"],
+            "1️⃣ " + MESSAGES["selecione_teatro"],
             options=teatros_disponiveis,
             index=idx_teatro
         )
@@ -126,7 +125,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
                 idx_default = lista_producoes.index(nome_espetaculo_auto)
                 
             espetaculo_nome = st.selectbox(
-                "Nome do Espetáculo:",
+                "2️⃣ Nome do Espetáculo (Para Histórico):",
                 options=lista_producoes,
                 index=idx_default,
                 placeholder="Selecione o espetáculo..."
@@ -134,7 +133,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
         else:
             # Fallback para Input Manual
             espetaculo_nome = st.text_input(
-                "Nome do Espetáculo (Para Histórico):", 
+                "2️⃣ Nome do Espetáculo (Para Histórico):", 
                 value=nome_espetaculo_auto,
                 placeholder="Ex: Os 3 Porquinhos"
             )
@@ -163,7 +162,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
             opcoes_gabarito.update({v["descricao"]: k for k, v in regras_teatro.items()})
             
             descricao_escolhida = st.selectbox(
-                MESSAGES["selecione_gabarito"],
+                "3️⃣ " + MESSAGES["selecione_gabarito"],
                 options=opcoes_gabarito.keys()
             )
             
@@ -221,7 +220,7 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
             </style>
             
             <button class="custom-upload-btn" onclick="document.querySelector('[data-testid=stFileUploader] input[type=file]').click()">
-                Suba seus arquivos
+                4️⃣ Suba seus arquivos
             </button>
         """, unsafe_allow_html=True)
         
@@ -287,10 +286,10 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
                 use_container_width=True
             )
 
-        botao_validar_clicado = st.button(MESSAGES["validar_arte"], use_container_width=True, type="primary")
+        botao_validar_clicado = st.button("6️⃣ " + MESSAGES["validar_arte"], use_container_width=True, type="primary")
         
         # Se resetar a seleção, limpa também a lixeira para evitar inconsistências futuras
-        if arquivos_carregados and st.button("🗑️ Limpar Seleção", use_container_width=True):
+        if arquivos_carregados and st.button("5️⃣ 🗑️ Limpar Seleção", use_container_width=True):
             st.session_state["uploader_key"] += 1
             st.session_state["removed_files"] = set() # Reset removed files too
             st.rerun()
