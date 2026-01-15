@@ -315,12 +315,13 @@ def aplicar_estilos_customizados():
             [data-testid="stFileUploader"] button[kind="secondary"] {
                 position: relative;
                 color: transparent !important; /* Hide original text */
+                background-color: #ffffff !important; /* Ensure white bg */
             }
             
             [data-testid="stFileUploader"] button[kind="secondary"]::after {
                 content: "Subir Arquivos";
                 position: absolute;
-                color: #333333 !important; /* Restore text color (Dark) */
+                color: #000000 !important; /* Force BLACK text */
                 left: 50%;
                 top: 50%;
                 transform: translate(-50%, -50%);
@@ -328,7 +329,27 @@ def aplicar_estilos_customizados():
                 font-weight: normal;
                 white-space: nowrap;
             }
+
+            /* FORCE BLACK TEXT ON WHITE BUTTONS IN SIDEBAR */
+            [data-testid="stSidebar"] [data-testid="stLinkButton"] a,
+            [data-testid="stSidebar"] button[kind="secondary"] {
+                background-color: #ffffff !important;
+                border: 1px solid #cccccc !important;
+            }
+
+            [data-testid="stSidebar"] [data-testid="stLinkButton"] a *,
+            [data-testid="stSidebar"] [data-testid="stLinkButton"] a, 
+            [data-testid="stSidebar"] button[kind="secondary"] *,
+            [data-testid="stSidebar"] button[kind="secondary"] {
+                 color: #000000 !important; /* Black Text */
+            }
             
+            /* Tooltip Fix (in case invisible) */
+            div[data-baseweb="tooltip"], div[role="tooltip"] {
+                background-color: #333333 !important;
+                color: #ffffff !important; 
+            }
+
             /* Ensure the limit text (Small) inside the box is also visible/dark */
             [data-testid="stFileUploader"] section[data-testid="stFileUploaderDropzone"] small {
                 color: #555555 !important;
