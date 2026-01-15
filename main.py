@@ -450,16 +450,96 @@ def main():
     
     # Step-by-step guide at the top
     st.markdown("""
-        <div style="background: #2c2c34; 
-                    padding: 1.5rem 2rem; 
-                    border-radius: 8px; 
-                    margin-bottom: 2rem;
-                    border-left: 4px solid #667eea;">
-            <p style="color: #ffffff; margin: 0; font-size: 1.1rem; line-height: 1.8;">
-                <strong>📋 Passo 1:</strong> Após criar suas artes conforme o checklist, suba e veja os avisos do sistema: <span style="color: #ff4b4b;">em vermelho delete</span>. 
-                <strong style="margin-left: 1.5rem;">✅ Passo 2:</strong> Valide o formato das suas artes, até finalizar todas elas. 
-                <strong style="margin-left: 1.5rem;">📥 Passo 3:</strong> Baixe o relatório e suba tudo no drive da sua atração.
-            </p>
+        <style>
+            .steps-container {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .step-card {
+                background: #2c2c34;
+                border-radius: 10px;
+                padding: 1.5rem;
+                position: relative;
+                overflow: hidden;
+                border-top: 4px solid;
+                transition: transform 0.2s ease;
+            }
+            
+            .step-card:hover {
+                transform: translateY(-5px);
+            }
+            
+            .step-card.step-1 { border-top-color: #28a745; }
+            .step-card.step-2 { border-top-color: #667eea; }
+            .step-card.step-3 { border-top-color: #ff4b4b; }
+            
+            .step-number {
+                font-size: 3rem;
+                font-weight: bold;
+                color: rgba(255,255,255,0.1);
+                position: absolute;
+                top: -10px;
+                right: 15px;
+                line-height: 1;
+            }
+            
+            .step-title {
+                color: #ffffff;
+                font-size: 0.9rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            
+            .step-card.step-1 .step-title { color: #28a745; }
+            .step-card.step-2 .step-title { color: #667eea; }
+            .step-card.step-3 .step-title { color: #ff4b4b; }
+            
+            .step-content {
+                color: rgba(255,255,255,0.85);
+                font-size: 0.95rem;
+                line-height: 1.6;
+                position: relative;
+                z-index: 1;
+            }
+            
+            .step-icon {
+                font-size: 2rem;
+                margin-bottom: 0.5rem;
+            }
+        </style>
+        
+        <div class="steps-container">
+            <div class="step-card step-1">
+                <div class="step-number">01</div>
+                <div class="step-icon">📋</div>
+                <div class="step-title">Passo 1: Upload</div>
+                <div class="step-content">
+                    Após criar suas artes conforme o checklist, suba e veja os avisos do sistema: <strong style="color: #ff4b4b;">em vermelho delete</strong>.
+                </div>
+            </div>
+            
+            <div class="step-card step-2">
+                <div class="step-number">02</div>
+                <div class="step-icon">✅</div>
+                <div class="step-title">Passo 2: Validação</div>
+                <div class="step-content">
+                    Valide o formato das suas artes, <strong>até finalizar todas elas</strong>.
+                </div>
+            </div>
+            
+            <div class="step-card step-3">
+                <div class="step-number">03</div>
+                <div class="step-icon">📥</div>
+                <div class="step-title">Passo 3: Finalização</div>
+                <div class="step-content">
+                    <strong>Baixe o relatório</strong> e suba tudo no drive da sua atração.
+                </div>
+            </div>
         </div>
     """, unsafe_allow_html=True)
     
