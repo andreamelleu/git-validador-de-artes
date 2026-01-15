@@ -13,8 +13,8 @@ MESSAGES = {
     "titulo_principal": "GIT - Validador de Formatos de Artes",
     "texto_intro": """
         **Olá, produtor Teatrali!**  
-        Após criar as suas artes conforme o checklist, suba e veja os avisos do sistema, em vermelho delete. Depois valide o formato das suas artes, até finalizar todas elas.
-        
+        Após criar as suas artes conforme o checklist, suba e veja os avisos do sistema: em vermelho delete.  
+        Depois valide o formato das suas artes, até finalizar todas elas.  
         **Baixe o relatório e suba tudo no drive da sua atração.**
         
         Qualquer dúvida, fale com o Procópio e solicite o que precisar!

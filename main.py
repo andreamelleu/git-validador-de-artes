@@ -123,8 +123,14 @@ def aplicar_estilos_customizados():
             }
             
             /* Hide Sidebar Toggle (arrows) and Toolbar */
+            /* RESTORE Sidebar Toggle (arrows) so user can re-open */
             [data-testid="collapsedControl"] {
-                display: none !important;
+                display: block !important;
+                color: #ffffff !important;
+            }
+            /* Ensure the icon inside is visible against dark background */
+            [data-testid="collapsedControl"] svg {
+                fill: #ffffff !important;
             }
             [data-testid="stToolbar"] {
                 display: none !important;
