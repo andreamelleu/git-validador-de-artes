@@ -109,12 +109,11 @@ def aplicar_estilos_customizados():
                 background-color: #1a1a1a !important;
             }
             
-            /* Remove gap at top of sidebar and fix width */
+            /* Remove gap at top of sidebar but allow resizing */
              section[data-testid="stSidebar"] {
                 top: 0 !important; 
                 margin-top: 0 !important;
-                width: 400px !important;
-                min-width: 400px !important;
+                /* Removed fixed width to allow user resizing */
             }
             
             /* Hide Sidebar Toggle (arrows) and Toolbar */
