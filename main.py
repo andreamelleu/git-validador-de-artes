@@ -292,6 +292,28 @@ def aplicar_estilos_customizados():
                 fill: #ffffff !important;
             }
 
+            /* HACK: Translate "Drag and drop files here" to Portuguese */
+            /* Hide the original text span */
+            [data-testid="stFileUploader"] section[data-testid="stFileUploaderDropzone"] > div > div > span {
+                display: none !important;
+            }
+            
+            /* Inject new text */
+            [data-testid="stFileUploader"] section[data-testid="stFileUploaderDropzone"] > div > div::before {
+                content: "Arraste seus arquivos do Drive ou Computador aqui";
+                visibility: visible;
+                display: block;
+                font-weight: bold;
+                font-size: 1.1em;
+                margin-bottom: 4px;
+                color: #ffffff !important;
+            }
+            
+            /* Ensure the limit text (Small) is visible and colored */
+            [data-testid="stFileUploader"] section[data-testid="stFileUploaderDropzone"] small {
+                color: #aaaaaa !important;
+            }
+
 
         </style>
     """

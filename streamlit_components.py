@@ -190,6 +190,8 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
             accept_multiple_files=True,
             key=f"uploader_{st.session_state['uploader_key']}"
         )
+        st.caption("💡 Dica: Para usar arquivos do Google Drive, arraste da pasta do Drive no seu computador ou faça o download primeiro.")
+
         
         # Inicializa e filtra removidos
         if "removed_files" not in st.session_state:
