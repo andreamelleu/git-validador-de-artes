@@ -320,7 +320,7 @@ def renderizar_area_visualizacao(regra: Dict[str, Any], arquivos: list) -> None:
     # Modo Inteligente
     if regra.get("is_smart_mode"):
         st.markdown("### 🔍 Modo de Validação Automática")
-        st.markdown("<small>O sistema identificará automaticamente o formato de cada arquivo enviado e verificará as regras correspondentes.</small>", unsafe_allow_html=True)
+        st.markdown('<div style="font-size: 1.2em; margin-bottom: 20px; color: #e0e0e0;">O sistema identificará automaticamente o formato de cada arquivo enviado e verificará as regras correspondentes.</div>', unsafe_allow_html=True)
         
         if arquivos_visiveis:
             st.subheader(f"Artes Carregadas ({len(arquivos_visiveis)})")
@@ -405,7 +405,7 @@ def renderizar_area_visualizacao(regra: Dict[str, Any], arquivos: list) -> None:
             if len(st.session_state["removed_files"]) > 0 and len(arquivos) > 0:
                  st.info("Todos os arquivos visíveis foram removidos. Limpe a seleção no menu lateral para reiniciar.")
             else:
-                st.markdown('<div class="art-placeholder" style="height:200px;">Aguardando upload de arquivos...</div>', unsafe_allow_html=True)
+                st.markdown('<div class="art-placeholder" style="height:200px; font-size: 1.5em; display:flex; align-items:center; justify-content:center; color: #cccccc;">Aguardando upload de arquivos...</div>', unsafe_allow_html=True)
         return
 
     # Modo Individual (comportamento original, adaptado para lista)
