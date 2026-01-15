@@ -279,22 +279,25 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
             except Exception:
                 pass
 
-        # Exibe o botão se encontrou algum link
-        if link_final:
-            st.link_button(
-                "📂 Abre a pasta do Drive com todas as artes deste espetáculo", 
-                link_final, 
-                use_container_width=True
-            )
-
-        botao_validar_clicado = st.button(MESSAGES["validar_arte"], use_container_width=True, type="primary")
-        
         # Se resetar a seleção, limpa também a lixeira para evitar inconsistências futuras
         if arquivos_carregados and st.button("5️⃣ 🗑️ Limpar Seleção", use_container_width=True):
             st.session_state["uploader_key"] += 1
             st.session_state["removed_files"] = set() # Reset removed files too
             st.rerun()
 
+        botao_validar_clicado = st.button(MESSAGES["validar_arte"], use_container_width=True, type="primary")
+        
+        # Exibe o botão se encontrou algum link
+        st.markdown("---")
+        st.markdown("**🛠️ Ferramentas de Apoio:**")
+        
+        if link_final:
+            st.link_button(
+                "📂 Abre a pasta do Drive com todas as artes deste espetáculo", 
+                link_final, 
+                use_container_width=True
+            )
+        
         st.link_button("Fale com o Procópio", "https://wa.me/5521968815522", use_container_width=True)
         
         # Links de Gabaritos (Placeholder - Aguardando URLs reais)
