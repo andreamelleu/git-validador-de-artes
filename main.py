@@ -210,11 +210,7 @@ def aplicar_estilos_customizados():
                 display: none !important;
             } REMOVED TO FIX SIDEBAR TOGGLE VISIBILITY */
 
-            /* Disable collapsing by dragging (if applicable in some versions) */
-            [data-testid="stSidebar"] {
-                 min-width: 336px !important;
-                 max-width: 336px !important;
-            }
+
 
             /* Limit image size in main area to avoid huge posters */
             [data-testid="stMain"] [data-testid="stImage"] img {
