@@ -115,9 +115,48 @@ def aplicar_estilos_customizados():
                 height: 1.5rem !important;
             }
 
-            /* HIDE SIDEBAR CLOSE BUTTON - Force Sidebar Always Open */
-            [data-testid="stSidebarCollapseButton"] {
-                display: none !important;
+            /* FORCE EXPAND BUTTON VISIBILITY */
+            [data-testid="stExpandSidebarButton"] {
+                display: block !important;
+                position: fixed !important;
+                top: 0.5rem !important;
+                left: 0.5rem !important;
+                z-index: 1000002 !important;
+                background-color: #333333 !important;
+                border-radius: 8px !important;
+                padding: 0.6rem !important;
+                width: auto !important;
+                height: auto !important;
+                min-width: 3rem !important;
+                min-height: 3rem !important;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
+            }
+            
+            [data-testid="stExpandSidebarButton"]:hover {
+                background-color: #555555 !important;
+            }
+            
+            [data-testid="stExpandSidebarButton"] svg {
+                fill: #ffffff !important;
+                width: 1.5rem !important;
+                height: 1.5rem !important;
+            }
+
+            /* FORCE ALL MAIN AREA TEXT TO WHITE */
+            [data-testid="stMain"] h1,
+            [data-testid="stMain"] h2,
+            [data-testid="stMain"] h3,
+            [data-testid="stMain"] h4,
+            [data-testid="stMain"] h5,
+            [data-testid="stMain"] h6,
+            [data-testid="stMain"] p,
+            [data-testid="stMain"] span,
+            [data-testid="stMain"] div,
+            [data-testid="stMain"] label,
+            [data-testid="stMain"] .stMarkdown,
+            [data-testid="stMain"] [data-testid="stMarkdownContainer"],
+            [data-testid="stMain"] [data-testid="stText"] {
+                color: #ffffff !important;
             }
 
             /* Hide Scrollbar in Sidebar */
