@@ -23,6 +23,15 @@ def aplicar_estilos_customizados():
                 color: #ffffff !important;
             }
 
+            [data-testid="stSidebar"] h1,
+            [data-testid="stSidebar"] h2,
+            [data-testid="stSidebar"] h3,
+            [data-testid="stSidebar"] h4,
+            [data-testid="stSidebar"] h5,
+            [data-testid="stSidebar"] h6 {
+                color: #ffffff !important;
+            }
+
             [data-testid="stSidebar"] .stMarkdown p {
                 font-size: 1.1rem !important;
                 line-height: 1.5 !important;
