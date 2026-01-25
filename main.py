@@ -401,6 +401,32 @@ def aplicar_estilos_customizados():
             }
 
         </style>
+        <script>
+            // Force sidebar to expand on page load
+            function expandSidebar() {
+                const sidebar = document.querySelector('[data-testid="stSidebar"]');
+                const expandButton = document.querySelector('[data-testid="stExpandSidebarButton"]');
+                
+                if (sidebar && expandButton) {
+                    const rect = sidebar.getBoundingClientRect();
+                    // If sidebar is off-screen (collapsed), click the expand button
+                    if (rect.left < -100) {
+                        expandButton.click();
+                    }
+                }
+            }
+            
+            // Run on page load
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', expandSidebar);
+            } else {
+                expandSidebar();
+            }
+            
+            // Also run after a short delay to catch dynamic content
+            setTimeout(expandSidebar, 500);
+            setTimeout(expandSidebar, 1000);
+        </script>
     """
     st.markdown(estilos_css, unsafe_allow_html=True)
 
