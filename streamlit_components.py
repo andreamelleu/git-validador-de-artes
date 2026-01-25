@@ -112,8 +112,10 @@ def renderizar_sidebar_painel() -> Tuple[str, Dict[str, Any], list, bool]:
         teatro_url = st.query_params.get("teatro")
         
         # Mapping de Aliases (Proteção contra nomes diferentes vindo do frontend)
-        if teatro_url == "ARTES": 
-            teatro_url = "DAS_ARTES"
+        if teatro_url in ["ARTES", "DAS_ARTES"]: 
+            teatro_url = "Teatro das Artes"
+        elif teatro_url == "GRANDES_ATORES":
+            teatro_url = "Teatro dos Grandes Atores"
             
         idx_teatro = 0
         if teatro_url and teatro_url in teatros_disponiveis:

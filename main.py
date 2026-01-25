@@ -174,9 +174,9 @@ def aplicar_estilos_customizados():
             [data-testid="manage-app-button"] {
                 display: none !important;
             }
-            button[kind="header"] {
+            /* button[kind="header"] {
                 display: none !important;
-            }
+            } REMOVED TO FIX SIDEBAR TOGGLE VISIBILITY */
 
             /* Hide Scrollbar in Sidebar */
             section[data-testid="stSidebar"] > div {
@@ -387,7 +387,13 @@ def main():
 
     aplicar_estilos_customizados()
 
-    teatro, regra, arquivos_raw, validar_button = renderizar_sidebar_painel()
+    try:
+        teatro, regra, arquivos_raw, validar_button = renderizar_sidebar_painel()
+    except Exception as e:
+        st.error(f"Erro Crítico ao renderizar sidebar: {e}")
+        import traceback
+        st.code(traceback.format_exc())
+        st.stop()
     
     # Inicializa conjunto de arquivos removidos se ainda não existir
     if "removed_files" not in st.session_state:
