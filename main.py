@@ -69,6 +69,66 @@ def aplicar_estilos_customizados():
                 height: 100vh !important;
             }
 
+            /* RESTORE CLEAN LOOK (Transparent Header) */
+            header[data-testid="stHeader"] {
+                background: transparent !important;
+            }
+            header[data-testid="stHeader"] > div {
+                 background: transparent !important;
+            }
+            
+            /* Remove standard padding to use full 100% space */
+            .main .block-container {
+                padding-top: 1rem !important;
+                padding-left: 1rem !important;
+                padding-right: 1rem !important;
+                max-width: 100% !important;
+            }
+
+            /* FORCE SIDEBAR TOGGLE VISIBILITY (Custom Style) */
+            [data-testid="collapsedControl"] {
+                display: block !important;
+                color: #ffffff !important;
+                position: fixed !important;
+                top: 0.5rem !important;
+                left: 0.5rem !important;
+                z-index: 1000002 !important;
+                background-color: #333333 !important;
+                border-radius: 8px !important;
+                padding: 0.4rem !important;
+                width: 3rem !important;
+                height: 3rem !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
+                transition: transform 0.2s !important;
+            }
+            [data-testid="collapsedControl"]:hover {
+                background-color: #555555 !important;
+                transform: scale(1.1);
+            }
+            
+            [data-testid="collapsedControl"] svg {
+                fill: #ffffff !important;
+                width: 1.5rem !important;
+                height: 1.5rem !important;
+            }
+
+            /* HIDE SIDEBAR CLOSE BUTTON - Force Sidebar Always Open */
+            [data-testid="stSidebarCollapseButton"] {
+                display: none !important;
+            }
+
+            /* Hide Scrollbar in Sidebar */
+            section[data-testid="stSidebar"] > div {
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            section[data-testid="stSidebar"] > div::-webkit-scrollbar {
+                display: none;
+            }
+
             .stApp {
                 background-color: #1a1a1a !important;
             }
@@ -101,11 +161,6 @@ def aplicar_estilos_customizados():
             /* button[kind="header"] {
                 display: none !important;
             } REMOVED TO FIX SIDEBAR TOGGLE VISIBILITY */
-
-            /* HIDE SIDEBAR CLOSE BUTTON - Force Sidebar Always Open */
-            [data-testid="stSidebarCollapseButton"] {
-                display: none !important;
-            }
 
             /* Disable collapsing by dragging (if applicable in some versions) */
             [data-testid="stSidebar"] {
