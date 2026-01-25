@@ -133,30 +133,31 @@ def aplicar_estilos_customizados():
             [data-testid="collapsedControl"] {
                 display: block !important;
                 color: #ffffff !important;
-                position: fixed !important; /* Force it to stay visible */
-                top: 1rem !important;
-                left: 1rem !important;
-                z-index: 1000000 !important; /* On top of everything */
-                background-color: #333333 !important; /* Add background to make it visible against any bg */
-                border-radius: 50% !important;
-                padding: 0.5rem !important;
-                width: 2.5rem !important;
-                height: 2.5rem !important;
+                position: fixed !important;
+                top: 0.5rem !important;
+                left: 0.5rem !important;
+                z-index: 1000002 !important; /* Extremely high z-index */
+                background-color: #ff4b4b !important; /* Bright red temporarily to find it */
+                border-radius: 8px !important;
+                padding: 0.4rem !important;
+                width: 3rem !important;
+                height: 3rem !important;
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.5) !important;
-                transition: background-color 0.3s !important;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
+                transition: transform 0.2s !important;
             }
             [data-testid="collapsedControl"]:hover {
-                background-color: #555555 !important;
+                background-color: #ff3333 !important;
+                transform: scale(1.1);
             }
             
             /* Ensure the icon inside is visible against dark background */
             [data-testid="collapsedControl"] svg {
                 fill: #ffffff !important;
-                width: 1.2rem !important;
-                height: 1.2rem !important;
+                width: 1.8rem !important;
+                height: 1.8rem !important;
             }
             [data-testid="stToolbar"] {
                 display: none !important;
