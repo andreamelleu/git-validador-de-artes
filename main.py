@@ -81,14 +81,13 @@ def aplicar_estilos_customizados():
                 background-color: #2c2c34 !important;
             }
 
-            /* Remove top white bar and header - BUT KEEP TOGGLE BUTTON ACCESSIBLE */
+            /* RESTORE HEADER to ensure Toggle Button works naturally */
+            /* We will only hide the colorful decoration line */
             header[data-testid="stHeader"] {
                 background: transparent !important;
-                /* display: none !important; <--- REMOVED so toggle button can live */
+                z-index: 100 !important;
             }
-            
-            /* Hide the decoration line/gradient at top if it exists */
-            header[data-testid="stHeader"] > div {
+            header[data-testid="stHeader"] > div:first-child {
                  background: transparent !important;
             }
             
