@@ -81,36 +81,7 @@ def aplicar_estilos_customizados():
                 background-color: #2c2c34 !important;
             }
 
-            /* RESTORE STANDARD STREAMLIT HEADER (Dark Mode) */
-            header[data-testid="stHeader"] {
-                background-color: #1a1a1a !important;
-                display: block !important;
-                z-index: 100000 !important;
-            }
-            
-            /* Ensure the decoration line is hidden or blends in */
-            header[data-testid="stHeader"] > div:first-child {
-                 background: transparent !important;
-            }
-
-            /* Sidebar Toggle Button - Standard Positioning */
-            [data-testid="collapsedControl"] {
-                display: block !important;
-                color: #ffffff !important;
-                z-index: 100001 !important;
-            }
-            
-            [data-testid="collapsedControl"] svg {
-                fill: #ffffff !important;
-                width: 1.5rem !important;
-                height: 1.5rem !important;
-            }
-            
-            /* Sidebar should respect the header space */
-             section[data-testid="stSidebar"] {
-                top: 60px !important; 
-                background-color: #2c2c34 !important;
-            }
+            /* Header and Sidebar hacks removed to ensure stability */
             [data-testid="stToolbar"] {
                 display: none !important;
             }
