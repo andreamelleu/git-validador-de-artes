@@ -102,15 +102,15 @@ def aplicar_estilos_customizados():
                 display: none !important;
             } REMOVED TO FIX SIDEBAR TOGGLE VISIBILITY */
 
-            /* Hide Scrollbar in Sidebar */
-            section[data-testid="stSidebar"] > div {
-                scrollbar-width: none; /* Firefox */
-                -ms-overflow-style: none;  /* IE 10+ */
+            /* HIDE SIDEBAR CLOSE BUTTON - Force Sidebar Always Open */
+            [data-testid="stSidebarCollapseButton"] {
+                display: none !important;
             }
-            section[data-testid="stSidebar"] > div::-webkit-scrollbar {
-                display: none; /* Chrome/Safari/Webkit */
-                width: 0px;
-                background: transparent;
+
+            /* Disable collapsing by dragging (if applicable in some versions) */
+            [data-testid="stSidebar"] {
+                 min-width: 336px !important;
+                 max-width: 336px !important;
             }
 
             /* Limit image size in main area to avoid huge posters */
