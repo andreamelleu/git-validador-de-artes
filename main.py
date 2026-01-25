@@ -81,82 +81,35 @@ def aplicar_estilos_customizados():
                 background-color: #2c2c34 !important;
             }
 
-            /* RESTORE HEADER to ensure Toggle Button works naturally */
-            /* We will only hide the colorful decoration line */
+            /* RESTORE STANDARD STREAMLIT HEADER (Dark Mode) */
             header[data-testid="stHeader"] {
-                background: transparent !important;
-                z-index: 100 !important;
+                background-color: #1a1a1a !important;
+                display: block !important;
+                z-index: 100000 !important;
             }
+            
+            /* Ensure the decoration line is hidden or blends in */
             header[data-testid="stHeader"] > div:first-child {
                  background: transparent !important;
             }
-            
-            /* Remove standard padding to use full 100% space */
-            .main .block-container {
-                padding-top: 1rem !important;
-                padding-left: 1rem !important;
-                padding-right: 1rem !important;
-                max-width: 100% !important;
-            }
 
-            /* Fix styles from previous step */
-            .stMarkdown, .stText, .stSelectbox label, .stFileUploader label, h1, h2, h3, p {
-                color: #ffffff !important;
-            }
-
-            /* Ensure input text remains visible (usually black on white) */
-            div[data-baseweb="select"] span {
-                color: #31333F !important;
-            }
-            
-            /* Fix for the selected value in the dropdown */
-            div[data-testid="stSelectbox"] div[data-baseweb="select"] div {
-                color: #31333F !important;
-            }
-
-            [data-testid="stMain"] {
-                overflow: auto !important;
-                height: 100vh !important;
-                background-color: #1a1a1a !important;
-            }
-            
-            /* Remove gap at top of sidebar but allow resizing */
-             section[data-testid="stSidebar"] {
-                top: 0 !important; 
-                margin-top: 0 !important;
-                /* Removed fixed width to allow user resizing */
-            }
-            
-            /* Hide Sidebar Toggle (arrows) and Toolbar */
-            /* RESTORE Sidebar Toggle (arrows) so user can re-open */
+            /* Sidebar Toggle Button - Standard Positioning */
             [data-testid="collapsedControl"] {
                 display: block !important;
                 color: #ffffff !important;
-                position: fixed !important;
-                top: 0.5rem !important;
-                left: 0.5rem !important;
-                z-index: 1000002 !important; /* Extremely high z-index */
-                background-color: #333333 !important; /* Restore dark background */
-                border-radius: 8px !important;
-                padding: 0.4rem !important;
-                width: 3rem !important;
-                height: 3rem !important;
-                display: flex !important;
-                align-items: center !important;
-                justify-content: center !important;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.3) !important;
-                transition: transform 0.2s !important;
-            }
-            [data-testid="collapsedControl"]:hover {
-                background-color: #ff3333 !important;
-                transform: scale(1.1);
+                z-index: 100001 !important;
             }
             
-            /* Ensure the icon inside is visible against dark background */
             [data-testid="collapsedControl"] svg {
                 fill: #ffffff !important;
-                width: 1.8rem !important;
-                height: 1.8rem !important;
+                width: 1.5rem !important;
+                height: 1.5rem !important;
+            }
+            
+            /* Sidebar should respect the header space */
+             section[data-testid="stSidebar"] {
+                top: 60px !important; 
+                background-color: #2c2c34 !important;
             }
             [data-testid="stToolbar"] {
                 display: none !important;
