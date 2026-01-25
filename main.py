@@ -137,7 +137,7 @@ def aplicar_estilos_customizados():
                 top: 0.5rem !important;
                 left: 0.5rem !important;
                 z-index: 1000002 !important; /* Extremely high z-index */
-                background-color: #ff4b4b !important; /* Bright red temporarily to find it */
+                background-color: #333333 !important; /* Restore dark background */
                 border-radius: 8px !important;
                 padding: 0.4rem !important;
                 width: 3rem !important;
